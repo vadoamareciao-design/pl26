@@ -445,7 +445,7 @@
       + oreHtml(m.ore)
       + '<div class="fonte">'+(vecchio
           ? '&#9888; Senza rete: è la previsione scaricata il ' + esc(quando)
-          : 'Aeronautica Militare &middot; aggiornato ' + esc(quando))+'</div>';
+          : esc(m.fonte || 'Aeronautica Militare') + ' &middot; aggiornato ' + esc(quando))+'</div>';
   }
 
   /* dettaglio ora per ora: quanto fa e quando piove, senza uscire dall'app */
@@ -475,6 +475,32 @@
     if (w.querySelector(".ore")) w.classList.toggle("aperto");
   });
 
+  /* Riserva per i giorni che l'Aeronautica non copre (arriva a ~6 giorni,
+     il viaggio ne dura 8). Stesso identico riquadro, ma la fonte e' dichiarata:
+     non si spaccia mai un dato per quello che non e'. */
+  function riserva(el, g, salvato){
+    var u = "https://api.open-meteo.com/v1/forecast?latitude=" + g.meteo.lat
+          + "&longitude=" + g.meteo.lon
+          + "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max"
+          + "&timezone=Europe%2FWarsaw&forecast_days=16";
+    fetch(u).then(function(r){ return r.json(); }).then(function(d){
+      var i = (d.daily && d.daily.time || []).indexOf(g.data);
+      if (i < 0) throw 0;
+      var m = { luogo: g.meteo.luogo,
+                max: d.daily.temperature_2m_max[i], min: d.daily.temperature_2m_min[i],
+                pioggia: d.daily.precipitation_probability_max[i] || 0,
+                vento: d.daily.wind_speed_10m_max[i] || 0,
+                fonte: "Open-Meteo (l'Aeronautica arriva a 6 giorni)" };
+      var quando = new Date().toLocaleString("it-IT",
+                    { day:"numeric", month:"long", hour:"2-digit", minute:"2-digit" });
+      var c = meteoCache(); c[g.n] = { m: m, quando: quando }; meteoSalva(c);
+      disegnaMeteo(el, m, false, quando);
+    }).catch(function(){
+      if (!salvato) el.innerHTML = '<div class="caric">Meteo non raggiungibile adesso. '
+        + 'Riprova quando c\'&egrave; rete.</div>';
+    });
+  }
+
   function caricaMeteo(){
     document.querySelectorAll(".meteo[data-g]").forEach(function(el){
       var g = VIAGGIO.giorni.filter(function(x){ return x.n == el.dataset.g; })[0];
@@ -492,11 +518,9 @@
              NON si mostra il meteo di oggi facendolo passare per quello: si dice
              che non c'e'. Arrivera' da solo quando il giorno entra nella finestra. */
           var giorno = stats.filter(function(s){ return s.localDate.slice(0,10) === g.data; })[0];
-          if (!giorno){
-            if (!salvato) el.innerHTML = '<div class="caric">Previsione non ancora disponibile: '
-              + 'l\'Aeronautica arriva a ~6 giorni. Comparir&agrave; da sola avvicinandosi alla data.</div>';
-            return;
-          }
+          /* L'Aeronautica arriva a ~6 giorni. Oltre — o se il giorno e' monco —
+             si passa alla riserva, e il riquadro DICE che fonte sta usando. */
+          if (!giorno || isNaN(+giorno.maxCelsius) || isNaN(+giorno.minCelsius)) return riserva(el, g, salvato);
           /* pioggia e vento: il massimo delle ore diurne di quel giorno */
           var idx = [], ts = d.timeseries || [];
           ts.forEach(function(t, i){ if (t.slice(0,10) === g.data) idx.push(i); });
@@ -525,9 +549,7 @@
           var c = meteoCache(); c[g.n] = { m: m, quando: quando }; meteoSalva(c);
           disegnaMeteo(el, m, false, quando);
         })
-        .catch(function(){
-          if (!salvato) el.innerHTML = '<div class="caric">Meteo non raggiungibile adesso.</div>';
-        });
+        .catch(function(){ riserva(el, g, salvato); });
     });
   }
 
