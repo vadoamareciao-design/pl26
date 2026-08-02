@@ -73,6 +73,32 @@
   .tp .ora{font-size:14px; font-weight:700; color:var(--rd);
            font-variant-numeric:tabular-nums; letter-spacing:.2px}
   .tp .ora .lk{font-size:12px; color:var(--gr2); font-weight:600; margin-left:6px}
+  /* Il colore sta SULL'ORA, non su etichette aggiunte: l'ora e' la cosa che si
+     guarda per prima, e colorata dice gia' che tipo di momento e'.
+     Niente pastiglie, niente maiuscoletto: si legge come un orario ferroviario. */
+  .tp.t-spost  .ora{color:#1257a8}
+  .tp.t-pasto  .ora{color:#a35a00}
+  .tp.t-visita .ora{color:#15181d}
+  .tp.t-riposo .ora{color:#9aa1ac; font-weight:600}
+  .tp.t-fisso  .ora{color:var(--rd)}
+  /* il filo della giornata: una riga verticale sottile che lega le tappe in fila */
+  .tp{position:relative; padding-left:19px}
+  .tp::before{content:""; position:absolute; left:0; top:0; bottom:0; width:1px; background:var(--ln)}
+  .tp::after{content:""; position:absolute; left:-2.5px; top:32px; width:6px; height:6px;
+             border-radius:50%; background:currentColor; color:var(--ln)}
+  .tp.t-spost::after {color:#1257a8} .tp.t-pasto::after{color:#a35a00}
+  .tp.t-fisso::after {color:var(--rd)} .tp.t-visita::after{color:#15181d}
+  .tp:first-of-type::before{top:26px}
+  .tp:last-of-type::before{bottom:auto; height:38px}
+  /* lo STATO batte il tipo: confermato e da-confermare restano riconoscibili */
+  .tp.ok  .ora{color:var(--vd)} .tp.ok::after {color:var(--vd)}
+  .tp.apr .ora{color:var(--ar)} .tp.apr::after{color:var(--ar)}
+
+  /* alternative: se il locale salta, il ripiego e' gia' pronto da toccare */
+  .alt{margin-top:14px; border-top:1px solid var(--ln)}
+  .alt .v{padding:15px 0 0}
+  .alt .v h5{margin:0; font-size:16.5px; font-weight:650; letter-spacing:-.2px}
+  .alt .v p{margin:5px 0 0; font-size:15px; color:var(--gr); line-height:1.5}
   .tp.ok  .ora{color:var(--vd)}
   .tp.apr .ora{color:var(--ar)}
   .tp h3{margin:6px 0 0; font-size:20px; line-height:1.32;
@@ -260,7 +286,7 @@
 
   /* ---------- una tappa ---------- */
   function tappa(x){
-    var c = "tp" + (x.ok ? " ok" : x.aperta ? " apr" : "");
+    var c = "tp" + (x.tipo ? " t-"+x.tipo : "") + (x.ok ? " ok" : x.aperta ? " apr" : "");
     var h = '<article class="'+c+'">';
     if (x.ora) h += '<div class="ora">'+esc(x.ora)+(x.fisso?' <span class="lk">ORARIO FISSO</span>':'')+'</div>';
     h += '<h3>'+esc(x.titolo)+'</h3>';
@@ -268,7 +294,7 @@
     if (x.attenzione) h += '<div class="att"><b>Attenzione.</b> '+esc(x.attenzione)+'</div>';
     if (x.note) h += '<p class="nota">'+esc(x.note)+'</p>';
     var numero = FAM ? null : x.tel;   /* i numeri dei fornitori restano a Raffaele */
-    if (x.vai || numero){
+    if (x.vai || numero || (x.mail && !FAM)){
       h += '<div class="btns">';
       /* Un solo tasto per andarci, e dice COME: il percorso parte da dove sei
          in questo momento (nessun punto di partenza fisso) e col mezzo giusto. */
@@ -276,6 +302,11 @@
                     + '<svg viewBox="0 0 24 24" aria-hidden="true">'+MODI[x.modo].ic+'</svg>'
                     + MODI[x.modo].et + '</a>';
       if (numero)  h += '<a class="btn tel" href="tel:'+esc(numero)+'">'+esc(tel(numero))+'</a>';
+      /* la mail della prenotazione: apre Gmail con la ricerca gia' fatta.
+         Nel file non ci sono codici ne' identificativi: solo il nome da cercare.
+         Serve la rete — le mail non si leggono in aereo. */
+      if (x.mail && !FAM) h += '<a class="btn tel" href="'+esc(x.mail)+'" target="_blank" rel="noopener">'
+                             + '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg>La mail</a>';
       h += '</div>';
     }
     /* La storia del posto: due righe che si leggono anche senza rete,
@@ -301,12 +332,28 @@
     var coda = "";
     if (g.pianoB)      coda += box("Piano B se piove", g.pianoB);
     if (g.valvola)     coda += box("Valvola, se siamo cotti", g.valvola);
-    if (g.alternative) coda += box("Alternative", g.alternative);
+    if (g.alternative) coda += box("Alternative", g.alternative) + alternative(g.alternativeVoci);
     if (g.nota)        coda += box("Nota", g.nota);
     if (coda) h += '<div class="coda">'+coda+'</div>';
     return h;
   }
   function box(l,t){ return '<div class="bx"><span class="lab">'+esc(l)+'</span><p>'+esc(t)+'</p></div>'; }
+
+  /* i ripieghi non sono piu' testo da ricopiare a mano: si toccano e basta */
+  function alternative(voci){
+    if (!voci || !voci.length) return "";
+    var h = '<div class="alt">';
+    voci.forEach(function(v){
+      h += '<div class="v"><h5>'+esc(v.n)+'</h5>';
+      if (v.d) h += '<p>'+esc(v.d)+'</p>';
+      h += '<div class="btns">';
+      if (v.vai) h += '<a class="btn vai" href="'+esc(v.vai)+'" target="_blank" rel="noopener">'
+                    + '<svg viewBox="0 0 24 24" aria-hidden="true">'+MODI.walking.ic+'</svg>Portami l&igrave;</a>';
+      if (v.tel && !FAM) h += '<a class="btn tel" href="tel:'+esc(v.tel)+'">'+esc(tel(v.tel))+'</a>';
+      h += '</div></div>';
+    });
+    return h+'</div>';
+  }
 
   /* ---------- schede ---------- */
   function vOggi(){
