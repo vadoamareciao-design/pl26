@@ -67,6 +67,21 @@
   .dh .meta{color:var(--gr); font-size:15px; margin-top:11px}
   .dh .cap{margin-top:18px; font-size:16px; color:#3a4048; line-height:1.6}
 
+  /* ---------------- meteo del giorno ---------------- */
+  .meteo{margin-top:20px; border:1px solid var(--ln); border-radius:12px; padding:15px 17px 14px}
+  .meteo .top{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+  .meteo .luogo{font-size:12.5px; font-weight:700; letter-spacing:.9px;
+                text-transform:uppercase; color:var(--gr2)}
+  .meteo .gradi{font-size:25px; font-weight:700; letter-spacing:-.6px; font-variant-numeric:tabular-nums}
+  .meteo .gradi small{font-size:16px; font-weight:600; color:var(--gr2); letter-spacing:0}
+  .meteo .dati{margin-top:5px; font-size:14.5px; color:var(--gr); font-variant-numeric:tabular-nums}
+  .meteo .dati b{color:#33393f; font-weight:600}
+  .meteo .vesti{margin:11px 0 0; font-size:16px; line-height:1.6; color:#33393f}
+  .meteo .fonte{margin-top:11px; padding-top:9px; border-top:1px solid var(--ln);
+                font-size:12px; color:var(--gr2)}
+  .meteo.vecchio{background:#fffaf2; border-color:#f0dcbe}
+  .meteo .caric{font-size:15px; color:var(--gr2)}
+
   /* ---------------- una tappa ---------------- */
   .tp{padding:26px 0; border-top:1px solid var(--ln)}
   .tp:first-of-type{border-top:1px solid var(--tx)}
@@ -99,8 +114,6 @@
   .alt .v{padding:15px 0 0}
   .alt .v h5{margin:0; font-size:16.5px; font-weight:650; letter-spacing:-.2px}
   .alt .v p{margin:5px 0 0; font-size:15px; color:var(--gr); line-height:1.5}
-  .tp.ok  .ora{color:var(--vd)}
-  .tp.apr .ora{color:var(--ar)}
   .tp h3{margin:6px 0 0; font-size:20px; line-height:1.32;
          font-weight:650; letter-spacing:-.3px}
   .tp .dove{margin-top:9px; color:var(--gr); font-size:15.5px; line-height:1.55}
@@ -327,6 +340,7 @@
           + '<div class="meta">Sveglia '+esc(g.sveglia)+' &middot; notte a '+esc(g.base)
           + ' &middot; carico '+esc(g.carico)+'</div>';
     if (g.cappello) h += '<p class="cap">'+esc(g.cappello)+'</p>';
+    if (g.meteo) h += '<div class="meteo" data-g="'+g.n+'"><div class="caric">Meteo del giorno&hellip;</div></div>';
     h += '</div>';
     g.tappe.forEach(function(t){ h += tappa(t); });
     var coda = "";
@@ -338,6 +352,92 @@
     return h;
   }
   function box(l,t){ return '<div class="bx"><span class="lab">'+esc(l)+'</span><p>'+esc(t)+'</p></div>'; }
+
+  /* ================= METEO =================
+     Dati dall'AERONAUTICA MILITARE italiana (api.meteoam.it, modello ECMWF).
+     Si aggiorna da solo a ogni apertura con rete: nessuno deve fare niente.
+     L'ultima risposta resta salvata sul telefono, quindi in aereo o senza campo
+     si vede comunque l'ultimo meteo scaricato, con scritto di quando e'. */
+  var MCHIAVE = "polonia2026:meteo";
+  function meteoCache(){ try { return JSON.parse(localStorage.getItem(MCHIAVE) || "{}"); } catch(e){ return {}; } }
+  function meteoSalva(o){ try { localStorage.setItem(MCHIAVE, JSON.stringify(o)); } catch(e){} }
+
+  /* come vestirsi: regole sui numeri, nessuna magia. Vale per sempre. */
+  function comeVestirsi(max, min, pioggia, vento){
+    var f = [];
+    if (max >= 30)      f.push("Fa caldo forte: maniche corte, cappello e acqua dietro");
+    else if (max >= 25) f.push("Caldo: maniche corte");
+    else if (max >= 20) f.push("Maniche corte di giorno");
+    else if (max >= 16) f.push("Maglietta e una felpa: non fa caldo");
+    else                f.push("Fresco tutto il giorno: felpa o giacca leggera");
+    if (min <= 13)      f.push("la sera scende parecchio, serve una felpa vera");
+    else if (min <= 16) f.push("la sera rinfresca, portati qualcosa sopra");
+    if (pioggia >= 60)  f.push("PIOGGIA probabile: k-way o ombrello");
+    else if (pioggia >= 30) f.push("puo' scappare un rovescio: k-way leggero");
+    if (vento >= 35)    f.push("vento forte: giacca a vento, sulla costa si sente");
+    else if (vento >= 25) f.push("c'e' vento");
+    var t = f.join(", ") + ".";
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
+  function disegnaMeteo(el, m, vecchio, quando){
+    var pioggia = Math.round(m.pioggia), vento = Math.round(m.vento);
+    el.className = "meteo" + (vecchio ? " vecchio" : "");
+    el.innerHTML =
+        '<div class="top"><span class="luogo">'+esc(m.luogo)+'</span>'
+      + '<span class="gradi">'+Math.round(m.max)+'&deg; <small>/ '+Math.round(m.min)+'&deg;</small></span></div>'
+      + '<div class="dati">Pioggia <b>'+pioggia+'%</b> &middot; vento <b>'+vento+' km/h</b></div>'
+      + '<p class="vesti">'+esc(comeVestirsi(m.max, m.min, pioggia, vento))+'</p>'
+      + '<div class="fonte">'+(vecchio
+          ? 'Senza rete: ultimo aggiornamento ' + esc(quando)
+          : 'Aeronautica Militare &middot; aggiornato ' + esc(quando))+'</div>';
+  }
+
+  function caricaMeteo(){
+    document.querySelectorAll(".meteo[data-g]").forEach(function(el){
+      var g = VIAGGIO.giorni.filter(function(x){ return x.n == el.dataset.g; })[0];
+      if (!g || !g.meteo) return;
+      var cache = meteoCache(), salvato = cache[g.n];
+      /* prima si mostra subito quello salvato: niente attesa, funziona in aereo */
+      if (salvato) disegnaMeteo(el, salvato.m, true, salvato.quando);
+      if (!navigator.onLine) { if (!salvato) el.innerHTML = '<div class="caric">Meteo non disponibile senza rete.</div>'; return; }
+
+      fetch("https://api.meteoam.it/deda-meteograms/api/GetMeteogram/preset1/" + g.meteo.lat + "," + g.meteo.lon)
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var stats = (d.extrainfo || {}).stats || [];
+          /* L'Aeronautica prevede ~6 giorni. Se il giorno e' ancora troppo lontano
+             NON si mostra il meteo di oggi facendolo passare per quello: si dice
+             che non c'e'. Arrivera' da solo quando il giorno entra nella finestra. */
+          var giorno = stats.filter(function(s){ return s.localDate.slice(0,10) === g.data; })[0];
+          if (!giorno){
+            if (!salvato) el.innerHTML = '<div class="caric">Previsione non ancora disponibile: '
+              + 'l\'Aeronautica arriva a ~6 giorni. Comparir&agrave; da sola avvicinandosi alla data.</div>';
+            return;
+          }
+          /* pioggia e vento: il massimo delle ore diurne di quel giorno */
+          var idx = [], ts = d.timeseries || [];
+          ts.forEach(function(t, i){ if (t.slice(0,10) === g.data) idx.push(i); });
+          if (!idx.length) ts.forEach(function(t, i){ idx.push(i); });
+          var par = d.paramlist || [], set = (d.datasets || {})["0"] || {};
+          function massimo(nome){
+            var p = par.indexOf(nome); if (p < 0) return 0;
+            var riga = set[p] || {}, mx = 0;
+            idx.forEach(function(i){ var v = +riga[i]; if (!isNaN(v) && v > mx) mx = v; });
+            return mx;
+          }
+          var m = { luogo: g.meteo.luogo, max: giorno.maxCelsius, min: giorno.minCelsius,
+                    pioggia: massimo("tpp"), vento: massimo("wkmh") };
+          var quando = new Date().toLocaleString("it-IT",
+                        { day:"numeric", month:"long", hour:"2-digit", minute:"2-digit" });
+          var c = meteoCache(); c[g.n] = { m: m, quando: quando }; meteoSalva(c);
+          disegnaMeteo(el, m, false, quando);
+        })
+        .catch(function(){
+          if (!salvato) el.innerHTML = '<div class="caric">Meteo non raggiungibile adesso.</div>';
+        });
+    });
+  }
 
   /* i ripieghi non sono piu' testo da ricopiare a mano: si toccano e basta */
   function alternative(voci){
@@ -369,7 +469,7 @@
       h = '<div class="dh"><h2>Viaggio finito</h2>'
         + '<p class="cap">Bentornato. I giorni restano tutti nella scheda Giorni.</p></div>';
     } else h = giorno(VIAGGIO.giorni[i]);
-    $("#v-oggi").innerHTML = h + foot();
+    $("#v-oggi").innerHTML = h + foot(); caricaMeteo();
   }
 
   var sel = 0;
@@ -380,7 +480,7 @@
            + '<span>'+esc(p[1]+" "+p[2].slice(0,3))+'</span></button>';
     }).join("");
   }
-  function vGiorni(){ pills(); $("#gbox").innerHTML = giorno(VIAGGIO.giorni[sel]) + foot(); window.scrollTo(0,0); }
+  function vGiorni(){ pills(); $("#gbox").innerHTML = giorno(VIAGGIO.giorni[sel]) + foot(); caricaMeteo(); window.scrollTo(0,0); }
   $("#pills").addEventListener("click", function(e){
     var b = e.target.closest(".pill"); if(!b) return; sel = +b.dataset.i; vGiorni();
   });
@@ -524,6 +624,7 @@
 
   function rete(){ document.body.classList.toggle("offline", !navigator.onLine); }
   addEventListener("online", rete); addEventListener("offline", rete); rete();
+  addEventListener("online", caricaMeteo);
 
   /* ---------- aggiornamenti ----------
      L'app si apre sempre dalla copia salvata (istantanea, funziona in aereo)

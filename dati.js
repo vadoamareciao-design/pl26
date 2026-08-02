@@ -14,6 +14,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G1 */
     {
       n: 1,
+      meteo: { luogo: "Varsavia", lat: 52.23, lon: 21.01 },
       data: "2026-08-04",
       etichetta: "Martedì 4 agosto",
       titolo: "Volo, arrivo a Modlin, prima sera in Città Vecchia",
@@ -75,6 +76,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G2 */
     {
       n: 2,
+      meteo: { luogo: "Varsavia", lat: 52.23, lon: 21.01 },
       data: "2026-08-05",
       etichetta: "Mercoledì 5 agosto",
       titolo: "Varsavia a fondo - stanziale, tutto coi mezzi",
@@ -148,6 +150,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G3 */
     {
       n: 3,
+      meteo: { luogo: "Masuria", lat: 53.8, lon: 21.57 },
       data: "2026-08-06",
       etichetta: "Giovedì 6 agosto",
       titolo: "Ritiro auto > Masuria > spa > cena al resort",
@@ -198,6 +201,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G4 */
     {
       n: 4,
+      meteo: { luogo: "Masuria", lat: 53.8, lon: 21.57 },
       data: "2026-08-07",
       etichetta: "Venerdì 7 agosto",
       titolo: "Kayak sulla Krutynia + Tana del Lupo + cena memorabile",
@@ -261,6 +265,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G5 */
     {
       n: 5,
+      meteo: { luogo: "Malbork e Danzica", lat: 54.35, lon: 18.65 },
       data: "2026-08-08",
       etichetta: "Sabato 8 agosto",
       titolo: "239 km > Malbork > pranzo a Bistro na Fali > Danzica",
@@ -326,6 +331,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G6 */
     {
       n: 6,
+      meteo: { luogo: "Leba e le dune", lat: 54.76, lon: 17.55 },
       data: "2026-08-09",
       etichetta: "Domenica 9 agosto",
       titolo: "Dune di Leba + foche - la giornata che si è alleggerita",
@@ -384,6 +390,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G7 */
     {
       n: 7,
+      meteo: { luogo: "Danzica", lat: 54.35, lon: 18.65 },
       data: "2026-08-10",
       etichetta: "Lunedì 10 agosto",
       titolo: "Danzica, galeone a Westerplatte, Sopot, cena di chiusura",
@@ -437,6 +444,7 @@ const VIAGGIO = {
     /* ---------------------------------------------------------------- G8 */
     {
       n: 8,
+      meteo: { luogo: "Danzica", lat: 54.35, lon: 18.65 },
       data: "2026-08-11",
       etichetta: "Martedì 11 agosto",
       titolo: "Ultima mattina > riconsegna auto > volo di sera",
