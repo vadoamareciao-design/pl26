@@ -97,6 +97,20 @@
   .meteo.m-caldo  {background:#fff7f4; border-color:#f3d6c9} .meteo.m-caldo  .ic{color:#c8102e}
   .meteo.vecchio{background:#fffaf2; border-color:#f0dcbe}
   .meteo .caric{font-size:15.5px; color:var(--gr); line-height:1.55}
+  .meteo{cursor:pointer}
+  .meteo .apri{margin-top:9px; font-size:13.5px; font-weight:600; color:var(--gr)}
+  .ore{margin-top:15px; padding-top:13px; border-top:1px solid var(--ln); display:none}
+  .meteo.aperto .ore{display:block}
+  .ore .r{display:flex; align-items:center; gap:12px; padding:7px 0; font-size:15px;
+          font-variant-numeric:tabular-nums; border-top:1px solid rgba(0,0,0,.05)}
+  .ore .r:first-child{border-top:0}
+  .ore .h{width:44px; color:var(--gr); font-weight:600}
+  .ore .t{width:44px; font-weight:700}
+  .ore .b{flex:1 1 auto; height:7px; border-radius:4px; background:#e9edf1; overflow:hidden}
+  .ore .b i{display:block; height:100%; background:#1257a8; border-radius:4px}
+  .ore .p{width:42px; text-align:right; color:var(--gr); font-size:13.5px}
+  .ore .nota{margin:11px 0 0; font-size:12.5px; color:var(--gr2); line-height:1.5}
+  .ore .nota a{color:var(--gr); text-decoration:underline}
 
   /* ---------------- una tappa ---------------- */
   .tp{padding:26px 0; border-top:1px solid var(--ln)}
@@ -427,10 +441,39 @@
       + '</div>'
       + '<p class="vesti">'+esc(comeVestirsi(m.max, m.min, pioggia, vento))+'</p>'
       + '<div class="dati">Pioggia <b>'+pioggia+'%</b> &middot; vento <b>'+vento+' km/h</b></div>'
+      + (m.ore && m.ore.length ? '<div class="apri">Tocca per le ore &darr;</div>' : '')
+      + oreHtml(m.ore)
       + '<div class="fonte">'+(vecchio
           ? '&#9888; Senza rete: è la previsione scaricata il ' + esc(quando)
           : 'Aeronautica Militare &middot; aggiornato ' + esc(quando))+'</div>';
   }
+
+  /* dettaglio ora per ora: quanto fa e quando piove, senza uscire dall'app */
+  function oreHtml(ore){
+    if (!ore || !ore.length) return "";
+    var tmin = 99, tmax = -99;
+    ore.forEach(function(o){ if (o.t < tmin) tmin = o.t; if (o.t > tmax) tmax = o.t; });
+    var span = Math.max(1, tmax - tmin);
+    var h = '<div class="ore">';
+    ore.forEach(function(o){
+      var largh = Math.round(((o.t - tmin) / span) * 80) + 20;
+      h += '<div class="r"><span class="h">'+esc(o.h)+':00</span>'
+         + '<span class="t">'+Math.round(o.t)+'&deg;</span>'
+         + '<span class="b"><i style="width:'+largh+'%"></i></span>'
+         + '<span class="p">'+(o.p > 0 ? Math.round(o.p)+'%' : '&mdash;')+'</span></div>';
+    });
+    h += '<p class="nota">Temperatura e probabilit&agrave; di pioggia ora per ora. '
+       + 'Dati del <a href="https://www.meteoam.it/" target="_blank" rel="noopener">'
+       + 'Servizio Meteo dell&rsquo;Aeronautica Militare</a> &mdash; sul loro sito le previsioni '
+       + 'sono solo per l&rsquo;Italia, queste arrivano dal loro servizio dati.</p>';
+    return h+'</div>';
+  }
+
+  document.addEventListener("click", function(e){
+    var w = e.target.closest(".meteo"); if (!w) return;
+    if (e.target.closest(".ore a")) return;      /* il link non chiude il pannello */
+    if (w.querySelector(".ore")) w.classList.toggle("aperto");
+  });
 
   function caricaMeteo(){
     document.querySelectorAll(".meteo[data-g]").forEach(function(el){
@@ -465,8 +508,18 @@
             idx.forEach(function(i){ var v = +riga[i]; if (!isNaN(v) && v > mx) mx = v; });
             return mx;
           }
+          /* le ore del giorno: temperatura e pioggia, per il dettaglio al tocco */
+          function serie(nome){
+            var p = par.indexOf(nome); if (p < 0) return [];
+            var riga = set[p] || {};
+            return idx.map(function(i){ return +riga[i]; });
+          }
+          var oreT = serie("2t"), oreP = serie("tpp");
+          var ore = idx.map(function(i, k){
+            return { h: ts[i].slice(11,13), t: oreT[k], p: oreP[k] };
+          }).filter(function(o){ var h = +o.h; return h >= 7 && h <= 23 && !isNaN(o.t); });
           var m = { luogo: g.meteo.luogo, max: giorno.maxCelsius, min: giorno.minCelsius,
-                    pioggia: massimo("tpp"), vento: massimo("wkmh") };
+                    pioggia: massimo("tpp"), vento: massimo("wkmh"), ore: ore };
           var quando = new Date().toLocaleString("it-IT",
                         { day:"numeric", month:"long", hour:"2-digit", minute:"2-digit" });
           var c = meteoCache(); c[g.n] = { m: m, quando: quando }; meteoSalva(c);
