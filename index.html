@@ -170,9 +170,13 @@
 <script>
 (function(){
   "use strict";
-  /* La versione per la famiglia viene generata da crea-versione-famiglia.py,
-     che qui sotto mette true: stesso contenuto, senza i link alle mappe. */
-  var SENZA_LINK = false;
+  /* "io" oppure "famiglia". La versione dei familiari la genera
+     crea-versione-famiglia.py, che qui sotto scrive "famiglia".
+     Differenze: i familiari hanno TUTTE le mappe, ma non la scheda "Da fare"
+     ne' i numeri dei fornitori — quelli restano a Raffaele, perche' se
+     telefonano in due allo stesso ristorante nasce il doppio tavolo. */
+  var MODO = "io";
+  var FAM  = (MODO === "famiglia");
   var $ = function(s){ return document.querySelector(s); };
   function esc(s){ return String(s==null?"":s)
     .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
@@ -189,6 +193,7 @@
   };
   var VOCI = [["oggi","Oggi"],["giorni","Giorni"],["dafare","Da fare"],
               ["pren","Prenot."],["tel","Numeri"],["soldi","Soldi"]];
+  if (FAM) VOCI = VOCI.filter(function(v){ return v[0] !== "dafare"; });
   $("#nav").innerHTML = VOCI.map(function(v){
     return '<button data-v="'+v[0]+'"><svg viewBox="0 0 24 24">'+ICONE[v[0]]+'</svg>'+v[1]+'</button>';
   }).join("");
@@ -213,12 +218,12 @@
     if (x.dove) h += '<div class="dove">'+esc(x.dove)+'</div>';
     if (x.attenzione) h += '<div class="att"><b>Attenzione.</b> '+esc(x.attenzione)+'</div>';
     if (x.note) h += '<p class="nota">'+esc(x.note)+'</p>';
-    var mappa = SENZA_LINK ? null : x.mappa, posto = SENZA_LINK ? null : x.posto;
-    if (mappa || posto || x.tel){
+    var numero = FAM ? null : x.tel;   /* i numeri dei fornitori restano a Raffaele */
+    if (x.mappa || x.posto || numero){
       h += '<div class="btns">';
-      if (mappa) h += '<a class="btn" href="'+esc(mappa)+'" target="_blank" rel="noopener">Apri il percorso &rarr;</a>';
-      if (posto) h += '<a class="btn" href="'+esc(posto)+'" target="_blank" rel="noopener">Vedi sulla mappa &rarr;</a>';
-      if (x.tel) h += '<a class="btn tel" href="tel:'+esc(x.tel)+'">'+esc(tel(x.tel))+'</a>';
+      if (x.mappa) h += '<a class="btn" href="'+esc(x.mappa)+'" target="_blank" rel="noopener">Apri il percorso &rarr;</a>';
+      if (x.posto) h += '<a class="btn" href="'+esc(x.posto)+'" target="_blank" rel="noopener">Vedi sulla mappa &rarr;</a>';
+      if (numero)  h += '<a class="btn tel" href="tel:'+esc(numero)+'">'+esc(tel(numero))+'</a>';
       h += '</div>';
     }
     return h+'</article>';
@@ -304,7 +309,9 @@
 
   function vTel(){
     var h = "";
+    var GRUPPI_FAM = ["Emergenze", "Hotel", "Attivita'", "Attività"];
     VIAGGIO.telefoni.forEach(function(gr){
+      if (FAM && GRUPPI_FAM.indexOf(gr.gruppo) === -1) return;
       h += '<h4 class="sec">'+esc(gr.gruppo)+'</h4>';
       gr.voci.forEach(function(v){ h += riga({titolo:v.n, testo:v.nota, tel:v.t, aggiunta:v.aggiunta}); });
     });

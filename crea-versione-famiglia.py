@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Genera la cartella famiglia/ a partire dai file principali.
 
-Stesso contenuto identico, ma senza i link alle mappe: l'app dei familiari
-resta una lettura, senza tasti che aprono Google Maps.
+Stesso contenuto e TUTTE le mappe. Cambia solo il "controllo": i familiari
+non hanno la scheda "Da fare" ne' i numeri dei fornitori, perche' se telefonano
+in due allo stesso ristorante nasce il doppio tavolo.
 
 Fonte unica: index.html + dati.js. Questo script NON scrive contenuti,
 li copia soltanto — cosi' non esistono due verita' da tenere allineate.
@@ -18,8 +19,8 @@ FAM.mkdir(exist_ok=True)
 
 # ---- index.html: unica differenza, l'interruttore SENZA_LINK ----------------
 html = (QUI / "index.html").read_text(encoding="utf-8")
-nuovo, n = re.subn(r"var SENZA_LINK = false;", "var SENZA_LINK = true;", html)
-assert n == 1, "interruttore SENZA_LINK non trovato in index.html"
+nuovo, n = re.subn(r'var MODO = "io";', 'var MODO = "famiglia";', html)
+assert n == 1, "interruttore MODO non trovato in index.html"
 # il manifest e il service worker sono i suoi, non quelli del piano di sopra
 nuovo = nuovo.replace('href="manifest.webmanifest"', 'href="manifest.webmanifest"')
 (FAM / "index.html").write_text(nuovo, encoding="utf-8")
@@ -47,5 +48,5 @@ for f in ("robots.txt", ".nojekyll"):
 
 # ---- controllo: nessun link alle mappe deve sopravvivere --------------------
 testo = (FAM / "index.html").read_text(encoding="utf-8")
-assert "var SENZA_LINK = true;" in testo
+assert 'var MODO = "famiglia";' in testo
 print("famiglia/ rigenerata:", ", ".join(sorted(p.name for p in FAM.iterdir())))
