@@ -90,6 +90,40 @@
        border:1.5px solid var(--tx); color:var(--tx); background:#fff; min-height:46px}
   .btn.tel{border-color:var(--ln); color:var(--gr); font-weight:500}
   .btn:active{background:#f2f3f5}
+  .btn svg{width:19px; height:19px; stroke:currentColor; fill:none;
+           stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto}
+  .btn.vai{border-color:var(--tx)}
+
+  /* ---------------- la storia del posto ---------------- */
+  details.st{margin-top:14px}
+  details.st summary{display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+        list-style:none; font-size:15px; font-weight:600; color:var(--gr);
+        border:1.5px solid var(--ln); border-radius:10px; padding:10px 16px; min-height:44px}
+  details.st summary::-webkit-details-marker{display:none}
+  details.st summary svg{width:18px; height:18px; stroke:currentColor; fill:none;
+        stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+  details.st[open] summary{color:var(--tx); border-color:var(--tx); border-radius:10px 10px 0 0;
+        border-bottom-color:transparent}
+  .stbox{border:1.5px solid var(--tx); border-top:0; border-radius:0 10px 10px 10px;
+         padding:16px 18px 15px; margin-top:-1px}
+  .stbox p{margin:0; font-size:16px; line-height:1.66; color:#33393f}
+  .stbox a{display:inline-block; margin-top:13px; font-size:14.5px; font-weight:600;
+           color:var(--gr); text-decoration:none; border-bottom:1.5px solid var(--ln); padding-bottom:2px}
+
+  /* ---------------- to-do spuntabile ---------------- */
+  .it.sp{display:flex; gap:14px; align-items:flex-start}
+  .it.sp .box{flex:0 0 auto; width:27px; height:27px; margin-top:1px; border-radius:7px;
+       border:1.8px solid var(--gr2); background:#fff; cursor:pointer; padding:0;
+       display:flex; align-items:center; justify-content:center}
+  .it.sp .box svg{width:16px; height:16px; stroke:#fff; fill:none; stroke-width:2.6;
+       stroke-linecap:round; stroke-linejoin:round; opacity:0}
+  .it.sp .txt{flex:1 1 auto; min-width:0}
+  .it.fatta .box{background:var(--vd); border-color:var(--vd)}
+  .it.fatta .box svg{opacity:1}
+  .it.fatta h3{color:var(--gr2); text-decoration:line-through; text-decoration-thickness:1px}
+  .it.fatta p, .it.fatta .kick{color:var(--gr2)}
+  .it.fatta.rossa h3{color:var(--gr2)}
+  .fatte-lab{margin-top:36px}
 
   /* ---------------- code della giornata ---------------- */
   .coda{margin-top:34px; padding-top:26px; border-top:1px solid var(--tx)}
@@ -142,6 +176,10 @@
   nav button svg{width:21px; height:21px; stroke:currentColor; fill:none;
                  stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
   nav button.on{color:var(--tx)}
+  nav button{position:relative}
+  .bdg{position:absolute; top:4px; left:50%; margin-left:5px; min-width:17px; height:17px;
+       padding:0 4px; border-radius:9px; background:var(--rd); color:#fff;
+       font-size:10.5px; font-weight:700; line-height:17px; text-align:center}
   .foot{margin-top:46px; padding-top:20px; border-top:1px solid var(--ln);
         color:var(--gr2); font-size:13px; line-height:1.6; text-align:center}
 </style>
@@ -189,7 +227,18 @@
     dafare:'<path d="M4 12.5l5 5L20 6.5"/>',
     pren:  '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/>',
     tel:   '<path d="M6.5 3h3l1.5 4-2 1.5a13 13 0 006.5 6.5L17 13l4 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 013.5 5.2 2 2 0 015.5 3z"/>',
-    soldi: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.7 0-2.8.8-2.8 2s1.1 1.9 2.8 2 2.8.8 2.8 2-1.1 2-2.8 2c-1.2 0-2.3-.5-2.8-1.4"/>'
+    soldi: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.7 0-2.8.8-2.8 2s1.1 1.9 2.8 2 2.8.8 2.8 2-1.1 2-2.8 2c-1.2 0-2.3-.5-2.8-1.4"/>',
+    storia:'<path d="M4 5.5A2.5 2.5 0 016.5 3H11v17H6.5A2.5 2.5 0 004 22.5zM20 5.5A2.5 2.5 0 0017.5 3H13v17h4.5a2.5 2.5 0 012.5 2.5z"/>'
+  };
+
+  /* Come ci si va: il tasto lo dice a parole, cosi' non si parte in auto per sbaglio */
+  var MODI = {
+    walking: { et:"A piedi &mdash; portami l&igrave;",
+               ic:'<path d="M13 4.5a1.6 1.6 0 100-.1zM11 21l1.6-5.2-2.1-2.1V9.5L8 11v3H6v-4.2l4.6-2.6c.9-.5 2-.2 2.6.6l1.3 2c.6.9 1.6 1.4 2.7 1.4V13c-1.6 0-3.1-.7-4.1-1.9l-.5 2.6 2 2v5.3z"/>' },
+    transit: { et:"Coi mezzi &mdash; portami l&igrave;",
+               ic:'<rect x="5" y="3" width="14" height="13" rx="2.5"/><path d="M5 9h14M8.5 20l-1.5 2M15.5 20l1.5 2M8 16h.01M16 16h.01M9 3h6"/><path d="M7 16h10"/>' },
+    driving: { et:"In auto &mdash; portami l&igrave;",
+               ic:'<path d="M5 17h14M6.5 17V19a1 1 0 01-1 1H4.5a1 1 0 01-1-1v-2M20.5 17V19a1 1 0 01-1 1h-1a1 1 0 01-1-1v-2"/><path d="M3.5 17v-4l2-5.2A2 2 0 017.4 6.5h9.2a2 2 0 011.9 1.3l2 5.2v4z"/><path d="M4.5 13h15M7.5 15h.01M16.5 15h.01"/>' }
   };
   var VOCI = [["oggi","Oggi"],["giorni","Giorni"],["dafare","Da fare"],
               ["pren","Prenot."],["tel","Numeri"],["soldi","Soldi"]];
@@ -219,12 +268,23 @@
     if (x.attenzione) h += '<div class="att"><b>Attenzione.</b> '+esc(x.attenzione)+'</div>';
     if (x.note) h += '<p class="nota">'+esc(x.note)+'</p>';
     var numero = FAM ? null : x.tel;   /* i numeri dei fornitori restano a Raffaele */
-    if (x.mappa || x.posto || numero){
+    if (x.vai || numero){
       h += '<div class="btns">';
-      if (x.mappa) h += '<a class="btn" href="'+esc(x.mappa)+'" target="_blank" rel="noopener">Apri il percorso &rarr;</a>';
-      if (x.posto) h += '<a class="btn" href="'+esc(x.posto)+'" target="_blank" rel="noopener">Vedi sulla mappa &rarr;</a>';
+      /* Un solo tasto per andarci, e dice COME: il percorso parte da dove sei
+         in questo momento (nessun punto di partenza fisso) e col mezzo giusto. */
+      if (x.vai) h += '<a class="btn vai" href="'+esc(x.vai)+'" target="_blank" rel="noopener">'
+                    + '<svg viewBox="0 0 24 24" aria-hidden="true">'+MODI[x.modo].ic+'</svg>'
+                    + MODI[x.modo].et + '</a>';
       if (numero)  h += '<a class="btn tel" href="tel:'+esc(numero)+'">'+esc(tel(numero))+'</a>';
       h += '</div>';
+    }
+    /* La storia del posto: due righe che si leggono anche senza rete,
+       e sotto il link per chi ne vuole di piu'. C'e' in tutte e due le versioni. */
+    if (x.storia){
+      h += '<details class="st"><summary><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONE.storia+'</svg>Storia</summary>'
+         + '<div class="stbox"><p>'+esc(x.storia.testo)+'</p>'
+         + '<a href="'+esc(x.storia.url)+'" target="_blank" rel="noopener">Leggi tutto su '
+         + esc(x.storia.fonte)+' &rarr;</a></div></details>';
     }
     return h+'</article>';
   }
@@ -278,26 +338,79 @@
     var b = e.target.closest(".pill"); if(!b) return; sel = +b.dataset.i; vGiorni();
   });
 
-  function riga(x, cls){
-    var h = '<div class="it'+(cls?" "+cls:"")+'">';
+  var SPUNTA = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  function riga(x, cls, fatta){
+    var sp = !!x.id;
+    var h = '<div class="it'+(cls?" "+cls:"")+(sp?" sp":"")+(fatta?" fatta":"")+'"'
+          + (sp ? ' data-id="'+esc(x.id)+'"' : '') + '>';
+    if (sp) h += '<button class="box" aria-label="Segna come fatta">'+SPUNTA+'</button><div class="txt">';
     if (x.kick) h += '<span class="kick">'+esc(x.kick)+'</span>';
     h += '<h3>'+esc(x.titolo)+(x.aggiunta?'<span class="tag">aggiunta</span>':'')+'</h3>';
     if (x.testo) h += '<p>'+esc(x.testo)+'</p>';
     if (x.tel) h += '<div class="btns"><a class="btn tel" href="tel:'+esc(x.tel)+'">'+esc(tel(x.tel))+'</a></div>';
+    if (sp) h += '</div>';
     return h+'</div>';
   }
 
+  /* ---------- to-do viva ----------
+     La spunta si salva sul telefono sotto l'id STABILE della voce, non sotto il testo:
+     cosi' se il testo di una voce viene riscritto, la spunta non si perde.
+     Funziona senza rete. Resta sul telefono di chi la mette: non gira sugli altri. */
+  var CHIAVE = "polonia2026:fatte";
+  function fatte(){
+    try { return JSON.parse(localStorage.getItem(CHIAVE) || "{}"); } catch(e){ return {}; }
+  }
+  function salvaFatte(o){ try { localStorage.setItem(CHIAVE, JSON.stringify(o)); } catch(e){} }
+
   function vDaFare(){
-    var p = VIAGGIO.primaDiPartire, h = "";
-    h += '<h4 class="sec">Le tre cose serie</h4>';
-    p.rosse.forEach(function(x){ h += riga(x,"rossa"); });
-    h += '<h4 class="sec">Online, prima di partire</h4>';
-    p.online.forEach(function(x){ h += riga(x); });
-    h += '<h4 class="sec">Le piccole rimaste indietro</h4>';
-    p.piccole.forEach(function(x){ h += riga(x); });
+    var p = VIAGGIO.primaDiPartire;
+    var tutte = [].concat(
+      p.rosse  .map(function(x){ return {v:x, sez:"Le tre cose serie",           cls:"rossa"}; }),
+      p.online .map(function(x){ return {v:x, sez:"Online, prima di partire",    cls:""}; }),
+      p.piccole.map(function(x){ return {v:x, sez:"Le piccole rimaste indietro", cls:""}; })
+    );
+    /* se una voce sparisce da dati.js, la sua spunta si butta */
+    var f = fatte(), vivi = {}, ripulito = false;
+    tutte.forEach(function(t){ if (t.v.id) vivi[t.v.id] = 1; });
+    Object.keys(f).forEach(function(k){ if (!vivi[k]) { delete f[k]; ripulito = true; } });
+    if (ripulito) salvaFatte(f);
+
+    var h = "", sez = "", aperte = tutte.filter(function(t){ return !f[t.v.id]; });
+    aperte.forEach(function(t){
+      if (t.sez !== sez) { h += '<h4 class="sec">'+esc(t.sez)+'</h4>'; sez = t.sez; }
+      h += riga(t.v, t.cls, false);
+    });
+    if (!aperte.length) h += '<div class="intro verde">Non &egrave; rimasto niente da fare. Buon viaggio.</div>';
+
+    /* le fatte scendono in fondo, in grigio: non spariscono, si possono rileggere */
+    var chiuse = tutte.filter(function(t){ return f[t.v.id]; });
+    if (chiuse.length){
+      h += '<h4 class="sec fatte-lab">Fatte &middot; '+chiuse.length+'</h4>';
+      chiuse.forEach(function(t){ h += riga(t.v, t.cls, true); });
+    }
     h += '<h4 class="sec">Regole ferme</h4>';
     VIAGGIO.regole.forEach(function(r){ h += riga({titolo:r.t, testo:r.d}); });
     $("#v-dafare").innerHTML = h + foot();
+  }
+
+  $("#v-dafare").addEventListener("click", function(e){
+    var b = e.target.closest(".box"); if (!b) return;
+    var it = b.closest(".it"), id = it && it.getAttribute("data-id"); if (!id) return;
+    var f = fatte();
+    if (f[id]) delete f[id]; else f[id] = Date.now();
+    salvaFatte(f);
+    vDaFare(); badge();
+  });
+
+  /* il numero delle cose ancora aperte, sulla barra in fondo: si vede senza entrare */
+  function badge(){
+    var b = document.querySelector('#nav button[data-v="dafare"]'); if (!b) return;
+    var p = VIAGGIO.primaDiPartire, f = fatte();
+    var n = [].concat(p.rosse, p.online, p.piccole).filter(function(x){ return !f[x.id]; }).length;
+    var e = b.querySelector(".bdg");
+    if (!n) { if (e) e.remove(); return; }
+    if (!e) { e = document.createElement("span"); e.className = "bdg"; b.appendChild(e); }
+    e.textContent = n;
   }
 
   function vPren(){
@@ -360,6 +473,7 @@
   $("#hS").textContent = VIAGGIO.sottotitolo;
   var i = indiceOggi(); sel = (i>=0) ? i : 0;
   vai("oggi");
+  if (!FAM) badge();
 
   function rete(){ document.body.classList.toggle("offline", !navigator.onLine); }
   addEventListener("online", rete); addEventListener("offline", rete); rete();
