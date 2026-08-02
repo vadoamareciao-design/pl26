@@ -3,7 +3,7 @@
    Una volta installata, l'app si apre e legge tutto SENZA RETE.
    Per pubblicare una modifica: alzare VERSIONE qui sotto. */
 
-var VERSIONE = "polonia-2026-v2";
+var VERSIONE = "polonia-2026-v3";
 
 var FILE = [
   "./",
@@ -13,7 +13,8 @@ var FILE = [
   "./icon-192.png",
   "./icon-512.png",
   "./icon-512-maskable.png",
-  "./icon-180.png"
+  "./icon-180.png",
+  "./icon-1024.png"
 ];
 
 /* INSTALL: scarica e mette in cache tutto, subito. */
