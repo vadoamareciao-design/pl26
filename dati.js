@@ -15,12 +15,12 @@ const VIAGGIO = {
     {
       n: 1,
       data: "2026-08-04",
-      etichetta: "Martedi 4 agosto",
+      etichetta: "Martedì 4 agosto",
       titolo: "Volo, arrivo a Modlin, prima sera in Citta Vecchia",
       base: "Varsavia",
       sveglia: "~6:00",
       carico: "medio",
-      cappello: "Niente auto oggi né domani: si ritira giovedi. Ci si muove con transfer, metro e tram.",
+      cappello: "Niente auto oggi né domani: si ritira giovedì. Ci si muove con transfer, metro e tram.",
       tappe: [
         { ora: "~6:00", titolo: "Sveglia, transfer per l'aeroporto di Catania",
           note: "Carte d'imbarco SOLO sull'app Ryanair: non si stampano più." },
@@ -59,7 +59,7 @@ const VIAGGIO = {
         { ora: "~21:30", titolo: "Due passi dopo cena - Gnojna Gora (facoltativo)",
           dove: "In fondo a ul. Celna, dentro la Città Vecchia - ~5 min a piedi",
           note: "Terrazza panoramica sulla scarpata: si vede la Vistola e la riva destra illuminata. Gratis. Nessun orario dichiarato. In alternativa la Piazza del Castello illuminata." },
-        { ora: "~22:00", titolo: "Rientro in hotel", dove: "Taxi/Bolt ~25 zl - ~12 min",
+        { ora: "~22:00", titolo: "Rientro in hotel", dove: "Taxi/Bolt ~25 zł - ~12 min",
           note: "La sera NON si torna a piedi (2,6 km): due Bolt e in 12 minuti si è a letto." }
       ],
       pianoB: "Se piove: salta la BUW, Città Vecchia sotto i portici + gelato al coperto. La cena è al chiuso, resta.",
@@ -71,7 +71,7 @@ const VIAGGIO = {
     {
       n: 2,
       data: "2026-08-05",
-      etichetta: "Mercoledi 5 agosto",
+      etichetta: "Mercoledì 5 agosto",
       titolo: "Varsavia a fondo - stanziale, tutto coi mezzi",
       base: "Varsavia",
       sveglia: "~7:30",
@@ -81,10 +81,10 @@ const VIAGGIO = {
         { ora: "~7:30", titolo: "Sveglia, colazione in hotel", dove: "ibis Styles", note: "Colazione inclusa." },
         { ora: "~8:15", titolo: "Verso lo Zoo (riva est, quartiere Praga)",
           dove: "Mezzi pubblici, 5,4 km - 29 min misurati porta a porta",
-          note: "Partenza alle 8:15, NON 8:30: alle 8:30 si arriverebbe alle 8:59 per l'apertura delle 9:00, con un minuto di margine. Biglietto WTP zona 1: 4,40 zl per 75 minuti.",
+          note: "Partenza alle 8:15, NON 8:30: alle 8:30 si arriverebbe alle 8:59 per l'apertura delle 9:00, con un minuto di margine. Biglietto WTP zona 1: 4,40 zł per 75 minuti.",
           mappa: "https://www.google.com/maps/dir/?api=1&origin=ibis%20Styles%20Warszawa%20City%2C%20Grzybowska%2043%2C%2000-855%20Warszawa%2C%20Poland&destination=Warszawskie%20ZOO%2C%20Ratuszowa%201/3%2C%20Warszawa%2C%20Poland&travelmode=transit" },
         { ora: "09:00", fisso: true, titolo: "Zoo di Varsavia", dove: "Ratuszowa 1/3 - ~2h30-3h",
-          note: "Feriale 9:00-18:00, ultimo ingresso 17:00. 45 zl intero / 35 ridotto. Ridotto solo per Emanuele (16) e Raffaele (studente): i quattro adulti pagano 45. Percorsi piani. Biglietti IN CASSA. Conviene esserci all'apertura, quando la fila è la più corta.",
+          note: "Feriale 9:00-18:00, ultimo ingresso 17:00. 45 zł intero / 35 ridotto. Ridotto solo per Emanuele (16) e Raffaele (studente): i quattro adulti pagano 45. Percorsi piani. Biglietti IN CASSA. Conviene esserci all'apertura, quando la fila è la più corta.",
           tel: "+48226194041" },
         { ora: "", titolo: "Villa Zabinski - SOLO dall'esterno",
           note: "L'interno della villa (la casa dei Giusti tra le Nazioni) nei feriali si visita SOLO alle 16:00 con guida: incompatibile con la mattina. Si guarda da fuori girando lo zoo." },
@@ -101,11 +101,11 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/dir/?api=1&origin=ibis%20Styles%20Warszawa%20City%2C%20Grzybowska%2043%2C%2000-855%20Warszawa%2C%20Poland&destination=Muzeum%20Powstania%20Warszawskiego%2C%20Grzybowska%2079%2C%20Warszawa%2C%20Poland&travelmode=transit" },
         { ora: "~15:45", titolo: "Museo dell'Insurrezione di Varsavia",
           dove: "Grzybowska 79 - ~2h",
-          note: "Mercoledi aperto 10:00-18:00. CHIUDE IL MARTEDI: mercoledi è l'unica occasione del viaggio. 35 zl intero / 30 ridotto (Raffaele ed Emanuele ridotto). Audioguida in ITALIANO 13 zl (10 zl sul proprio telefono). Durata media dichiarata dal museo: 2 ore. Ascensore su ogni piano. Consigliato dai 13 anni in su." },
+          note: "Mercoledì aperto 10:00-18:00. CHIUDE IL MARTEDI: mercoledì è l'unica occasione del viaggio. 35 zł intero / 30 ridotto (Raffaele ed Emanuele ridotto). Audioguida in ITALIANO 13 zł (10 zł sul proprio telefono). Durata media dichiarata dal museo: 2 ore. Ascensore su ogni piano. Consigliato dai 13 anni in su." },
         { ora: "~17:30", titolo: "Museo > rientro in hotel", dove: "Mezzi - ~10 min",
           note: "Uscita alle 17:30 e non 17:45: c'è da riconsegnare l'audioguida. Il museo è nella via dell'hotel." },
         { ora: "17:45-19:30", titolo: "Riposo in hotel", dove: "ibis Styles - ~1h45",
-          note: "Decisione dell'1/8: mercoledi si SALTA la Città Vecchia. La si è già vista martedi sera, e questa è la giornata più pesante a piedi." },
+          note: "Decisione dell'1/8: mercoledì si SALTA la Città Vecchia. La si è già vista martedì sera, e questa è la giornata più pesante a piedi." },
         { ora: "~19:30", titolo: "Hotel > Beef & Pepper",
           dove: "Bolt/taxi, 1,9 km - 8 min in auto (26 a piedi)",
           note: "Rimisurato l'1/8 con l'indirizzo giusto: il locale ha UNA SOLA sede, ul. Nowogrodzka 47A. Margine sulla cena: 30 minuti.",
@@ -113,12 +113,12 @@ const VIAGGIO = {
         { ora: "20:00", fisso: true, ok: true, titolo: "Cena - Beef & Pepper Steak house - CONFERMATA",
           dove: "ul. Nowogrodzka 47A - 6 persone, sala INSIDE",
           tel: "+48785025025",
-          note: "Confermata via mail l'1/8. Nessun codice di prenotazione: il locale la identifica con nome + data + ora. Aperto 12:00-24:00. ATTENZIONE al conto: antipasto + bistecca + bevanda sfonda i 150 zl a testa - restare su Rib-eye Hereford 105 zl senza antipasto, o i secondi non-steak (anatra 89, guancia 89). Richiesta mandata a parte: tavolo normale per 6, non il divanetto." },
+          note: "Confermata via mail l'1/8. Nessun codice di prenotazione: il locale la identifica con nome + data + ora. Aperto 12:00-24:00. ATTENZIONE al conto: antipasto + bistecca + bevanda sfonda i 150 zł a testa - restare su Rib-eye Hereford 105 zł senza antipasto, o i secondi non-steak (anatra 89, guancia 89). Richiesta mandata a parte: tavolo normale per 6, non il divanetto." },
         { ora: "~22:00", titolo: "Rientro in hotel", dove: "Taxi/Bolt - ~8 min",
           note: "Ultima notte a Varsavia: STASERA SI PREPARANO I BAGAGLI, domattina si parte presto." }
       ],
       pianoB: "Lo Zoo regge la pioggia leggera (molti padiglioni coperti). Col temporale si inverte: Museo dell'Insurrezione al mattino (apre alle 10:00) e Zoo nel pomeriggio se spiove. Il pomeriggio principale non teme la pioggia: il museo è interamente al coperto.",
-      valvola: "Da decidere alle 15:15 in hotel, guardando in faccia i genitori. Se il gruppo è cotto, due ore di museo denso ed emotivamente duro sono troppe: si va alla terrazza del Palazzo della Cultura (Plac Defilad 1), 16 min a piedi, ascensore al 30 piano in 19 secondi, zero scale, aperta d'estate fino alle 23:00, 30 zl intero / 25 ridotto, nessuna prenotazione. È l'opzione dove non può andare storto nulla.",
+      valvola: "Da decidere alle 15:15 in hotel, guardando in faccia i genitori. Se il gruppo è cotto, due ore di museo denso ed emotivamente duro sono troppe: si va alla terrazza del Palazzo della Cultura (Plac Defilad 1), 16 min a piedi, ascensore al 30 piano in 19 secondi, zero scale, aperta d'estate fino alle 23:00, 30 zł intero / 25 ridotto, nessuna prenotazione. È l'opzione dove non può andare storto nulla.",
       alternative: "Se una sera non si ha voglia di attraversare la città: Symfonia Smaku, Chlodna 2, 5 min a piedi (chiamare per gli orari, +48 22 558 45 24) - Nova Wola, Rondo Daszynskiego 2, 12 min a piedi, cena 17:00-22:30 confermata (+48 22 377 38 01)."
     },
 
@@ -126,7 +126,7 @@ const VIAGGIO = {
     {
       n: 3,
       data: "2026-08-06",
-      etichetta: "Giovedi 6 agosto",
+      etichetta: "Giovedì 6 agosto",
       titolo: "Ritiro auto > Masuria > spa > cena al resort",
       base: "Masuria",
       sveglia: "~7:15",
@@ -167,14 +167,14 @@ const VIAGGIO = {
       ],
       pianoB: "Non ne serve più uno: la giornata è ormai al coperto (spa + ristorante dell'hotel), il tempo non la tocca.",
       valvola: "Se il traffico fosse quello pessimistico (arrivo 14:10) si accorcia la spa di un'ora. La cena delle 19:30 non si tocca ed è comunque spostabile fino alle 20:00.",
-      nota: "Stasera va telefonato il kayak per domattina: +48 600 029 035. E vanno preparati 360 zl in contanti."
+      nota: "Stasera va telefonato il kayak per domattina: +48 600 029 035. E vanno preparati 360 zł in contanti."
     },
 
     /* ---------------------------------------------------------------- G4 */
     {
       n: 4,
       data: "2026-08-07",
-      etichetta: "Venerdi 7 agosto",
+      etichetta: "Venerdì 7 agosto",
       titolo: "Kayak sulla Krutynia + Tana del Lupo + cena memorabile",
       base: "Masuria",
       sveglia: "~7:00",
@@ -185,13 +185,13 @@ const VIAGGIO = {
           note: "Giornata lunga: partire carichi." },
         { ora: "~8:00", titolo: "Resort > Krutyn (base kayak)",
           dove: "27 km in auto - 28 min",
-          note: "Partenza 8:00 e NON 8:10: sul posto servono 30 minuti per parcheggiare, contare i 360 zl in contanti e vestire sei persone.",
+          note: "Partenza 8:00 e NON 8:10: sul posto servono 30 minuti per parcheggiare, contare i 360 zł in contanti e vestire sei persone.",
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Hotel%20Robert%27s%20Port%2C%20Stare%20Sady%204%2C%2011-730%20Mikolajki%2C%20Poland&destination=Krutyn%202B%2C%2011-710%20Piecki%2C%20Poland&travelmode=driving" },
         { ora: "09:00", fisso: true, titolo: "Discesa in kayak sulla Krutynia (Krutyn > Rosocha, 6 km)",
           dove: "Fiume Krutynia - 2-3h in acqua",
-          attenzione: "360 zl IN CONTANTI, da pagare sul posto PRIMA della discesa. Se piove e non si va, non si è ancora pagato nulla: il rischio economico è zero.",
+          attenzione: "360 zł IN CONTANTI, da pagare sul posto PRIMA della discesa. Se piove e non si va, non si è ancora pagato nulla: il rischio economico è zero.",
           tel: "+48600029035",
-          note: "Operatore Sakowscy / Wan Plac, base Krutyn 2B. Un dipendente parla italiano. Fiume facile, corrente dolce, nessuna rapida. 3 kayak doppi x 120 zl. Tutto incluso (attrezzatura + recupero). Ci si bagna e si sale/scende dal kayak: gli zii valutino. Loro hanno indicato le 9:00, non le 8:45.",
+          note: "Operatore Sakowscy / Wan Plac, base Krutyn 2B. Un dipendente parla italiano. Fiume facile, corrente dolce, nessuna rapida. 3 kayak doppi x 120 zł. Tutto incluso (attrezzatura + recupero). Ci si bagna e si sale/scende dal kayak: gli zii valutino. Loro hanno indicato le 9:00, non le 8:45.",
           mappa: "https://www.google.com/maps/search/?api=1&query=Krutyn%202B%2C%2011-710%20Piecki%2C%20Poland" },
         { ora: "~12:00", titolo: "Cambio, pranzo", dove: "Krutyn - ~75 min",
           note: "Non comprimere: si è bagnati e affamati." },
@@ -201,7 +201,7 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Krutyn%202B%2C%2011-710%20Piecki%2C%20Poland&destination=Wilczy%20Szaniec%2C%20Gierloz%2C%20Poland&travelmode=driving" },
         { ora: "~14:40", titolo: "Wilczy Szaniec - la Tana del Lupo",
           dove: "Gierloz - ~2h a piedi nel bosco (terreno piano)",
-          note: "Il quartier generale di Hitler nel bosco. Agosto 8:00-20:00 tutti i giorni. 30 zl intero / 25 ridotto + parcheggio 15 zl. Audioguida 10 zl oppure app gratuita 'Wilczy Szaniec'. Ridotto solo per Emanuele e Raffaele." },
+          note: "Il quartier generale di Hitler nel bosco. Agosto 8:00-20:00 tutti i giorni. 30 zł intero / 25 ridotto + parcheggio 15 zł. Audioguida 10 zł oppure app gratuita 'Wilczy Szaniec'. Ridotto solo per Emanuele e Raffaele." },
         { ora: "16:40", titolo: "BIVIO DEL POMERIGGIO - si sceglie qui",
           note: "Ramo A (default): si rientra al resort. Ramo B: Swieta Lipka." },
         { ora: "~16:40 (A)", titolo: "RAMO A - Rientro diretto al resort",
@@ -217,7 +217,7 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Hotel%20Robert%27s%20Port%2C%20Stare%20Sady%204%2C%2011-730%20Mikolajki%2C%20Poland&destination=Restauracja%20Spizarnia%2C%20Plac%20Handlowy%2014%2C%20Mikolajki%2C%20Poland&travelmode=driving" },
         { ora: "19:30", fisso: true, aperta: true, titolo: "Cena memorabile - Spizarnia Mazury (DA CONFERMARE)",
           dove: "Plac Handlowy 14, Mikolajki",
-          attenzione: "LA METÀ È ANCORA APERTA. Sono state contattate DUE trattorie e al 2/8 nessuna ha risposto: vince chi conferma per primo, all'altra si manda subito una riga di disdetta. Se vince w Zatoce si cena alle 19:00 e NON alle 19:30, perché il venerdi chiudono alle 21:00. Sono alla stessa distanza dal resort (5,5-5,8 km, 8-9 min): il cambio non costa un minuto.",
+          attenzione: "LA METÀ È ANCORA APERTA. Sono state contattate DUE trattorie e al 2/8 nessuna ha risposto: vince chi conferma per primo, all'altra si manda subito una riga di disdetta. Se vince w Zatoce si cena alle 19:00 e NON alle 19:30, perché il venerdì chiudono alle 21:00. Sono alla stessa distanza dal resort (5,5-5,8 km, 8-9 min): il cambio non costa un minuto.",
           tel: "+48451101330",
           note: "Spizarnia: aperta tutti i giorni 12:00-22:00 in agosto (l'orario 12-20 sul sito è di bassa stagione). Istituzione dei laghi da oltre 20 anni, 94% la raccomanda su 506 opinioni. Pesce di lago e selvaggina, ~24-32 euro a testa. Altro numero: +48 509 188 057. Il numero (87) 421 52 18 che gira sui portali NON è sul sito ufficiale: non usarlo. w Zatoce: +48 87 421 90 00 (è un hotel, la reception risponde sempre)." },
         { ora: "~21:45", titolo: "Rientro al resort", dove: "~9 min in auto",
@@ -252,7 +252,7 @@ const VIAGGIO = {
           note: "Nome e tariffa del parcheggio non sono pubblicati online: sono parcheggi a pagamento attorno al castello, lato Staroscinska/Kosciuszki. Si vede sul posto." },
         { ora: "~11:00", titolo: "Castello di Malbork (Trasa Historyczna, audioguida in italiano)",
           dove: "Malbork - ~3h30 a piedi",
-          note: "Mar-dom 9:00-20:00, ultimo ingresso 16:30: sabato aperto. 80 zl intero / 60 ridotto, audioguida italiana INCLUSA. Biglietti IN CASSA (decisione del 31/07). La visita parte dal Plac 60-lecia Muzeum, DAVANTI ALLE CASSE, non dal portone: l'audioguida si ritira lì ed è lì che si sceglie l'italiano. Torre: biglietto a parte, 17/13 zl = 94 zl per sei, si sale 11:00-18:15.",
+          note: "Mar-dom 9:00-20:00, ultimo ingresso 16:30: sabato aperto. 80 zł intero / 60 ridotto, audioguida italiana INCLUSA. Biglietti IN CASSA (decisione del 31/07). La visita parte dal Plac 60-lecia Muzeum, DAVANTI ALLE CASSE, non dal portone: l'audioguida si ritira lì ed è lì che si sceglie l'italiano. Torre: biglietto a parte, 17/13 zł = 94 zł per sei, si sale 11:00-18:15.",
           mappa: "https://www.google.com/maps/search/?api=1&query=Zamek%20w%20Malborku%2C%20Staroscinska%201%2C%2082-200%20Malbork%2C%20Poland" },
         { ora: "~14:15", fisso: true, aperta: true, titolo: "Pranzo - Bistro na Fali (DA CONFERMARE)",
           dove: "ul. Walowa 10, Malbork - ~75 min, ~9 min in auto dal castello",
@@ -264,9 +264,9 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Zamek%20w%20Malborku%2C%20Staroscinska%201%2C%2082-200%20Malbork%2C%20Poland&destination=Hotel%20Sadova%2C%20Lakowa%2060%2C%2080-769%20Gdansk%2C%20Poland&travelmode=driving" },
         { ora: "~16:45", titolo: "Check-in Hotel Sadova (3 notti), riposo",
           dove: "Lakowa 60, Danzica - ~45 min",
-          attenzione: "È UN MONOLOCALE PER 4, non tre camere: Raffaele ed Emanuele condividono un matrimoniale. Verificare la configurazione dei letti al check-in. Parcheggio 70 zl al giorno per auto, NON prenotabile: 2 auto x 3 giorni = ~420 zl. Non è mai stato chiesto se c'è posto durante il Jarmark né qual è il ripiego.",
+          attenzione: "È UN MONOLOCALE PER 4, non tre camere: Raffaele ed Emanuele condividono un matrimoniale. Verificare la configurazione dei letti al check-in. Parcheggio 70 zł al giorno per auto, NON prenotabile: 2 auto x 3 giorni = ~420 zł. Non è mai stato chiesto se c'è posto durante il Jarmark né qual è il ripiego.",
           tel: "+48583823030",
-          note: "Già pagato, non rimborsabile, intestato a Raffaele. Colazione ESCLUSA (85 zl a persona). Tassa di soggiorno 41,52 zl in loco." },
+          note: "Già pagato, non rimborsabile, intestato a Raffaele. Colazione ESCLUSA (85 zł a persona). Tassa di soggiorno 41,52 zł in loco." },
         { ora: "~18:15", titolo: "Passeggiata serale lungo la Motlawa",
           dove: "Dlugi Targ, la gru Zuraw - ~45 min, 13 min a piedi",
           note: "LA PASSEGGIATA FINISCE ALLE 19:00, non alle 19:15: dal centro al Kubicki sono 19 minuti a piedi, e chiudendo alle 19:15 si arrivava alle 19:34 per un tavolo delle 19:30. Fiera di San Domenico in corso su tutti e tre i giorni: folla e ristoranti pieni. NON mangiare sulla via Dluga: è la trappola per turisti.",
@@ -306,7 +306,7 @@ const VIAGGIO = {
           dove: "Parco Slowinski - ~30 min",
           attenzione: "Da Rabka al piede della duna Lacka sono ~5,5 km, NON 1,8 come diceva il vecchio piano. Andata e ritorno a piedi = 11 km sulla sabbia sotto il sole d'agosto: con quattro over-50 il melex (navetta elettrica) è la scelta giusta, o le bici.",
           tel: "+48886354555",
-          note: "Ingresso parco 10 zl intero / 5 ridotto. Melex ~50-70 zl a testa andata e ritorno. Parcheggio di Rabka ~8-9 zl all'ora. ATTENZIONE: il melex elettrico è spesso fermo, va messo in conto un piano B a piedi o in bici (sterrato piano)." },
+          note: "Ingresso parco 10 zł intero / 5 ridotto. Melex ~50-70 zł a testa andata e ritorno. Parcheggio di Rabka ~8-9 zł all'ora. ATTENZIONE: il melex elettrico è spesso fermo, va messo in conto un piano B a piedi o in bici (sterrato piano)." },
         { ora: "~11:30", titolo: "Dune mobili (Wydma Lacka) - salita e panorama",
           dove: "Parco Slowinski - ~2h30",
           note: "La salita è PIÙ FACILE DOPO LA PIOGGIA (sabbia compatta): col sole secco si affonda. Cappello e acqua obbligatori. Chi non se la sente può fermarsi al panorama basso." },
@@ -320,7 +320,7 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Leba%2C%20Poland&destination=Sea%20Park%2C%20Sarbsk%2C%20Poland&travelmode=driving" },
         { ora: "~15:40", titolo: "Sea Park Sarbsk (foche)",
           dove: "ul. Foki 1, Sarbsk - ~1h30-2h",
-          note: "Attrazione seduta, comoda per tutti. In luglio-agosto aperto 9:00-19:00. Spettacolo foche alle 16:00 e, in alta stagione, ANCHE ALLE 18:00. Arrivare dopo le 16:00 non rovina la giornata: c'è il pokaz delle 18:00 e il parco chiude alle 19:00 - è questa la vera rete di sicurezza. 119 zl intero / 99 ridotto + parcheggio 20 zl. ATTENZIONE: qui il ridotto studenti NON vale." },
+          note: "Attrazione seduta, comoda per tutti. In luglio-agosto aperto 9:00-19:00. Spettacolo foche alle 16:00 e, in alta stagione, ANCHE ALLE 18:00. Arrivare dopo le 16:00 non rovina la giornata: c'è il pokaz delle 18:00 e il parco chiude alle 19:00 - è questa la vera rete di sicurezza. 119 zł intero / 99 ridotto + parcheggio 20 zł. ATTENZIONE: qui il ridotto studenti NON vale." },
         { ora: "~17:45", titolo: "Rientro a Danzica",
           dove: "112 km in auto - 1h26 (fino a 1h47)",
           note: "Cambio-guida, sosta a Lebork se serve.",
@@ -342,7 +342,7 @@ const VIAGGIO = {
     {
       n: 7,
       data: "2026-08-10",
-      etichetta: "Lunedi 10 agosto",
+      etichetta: "Lunedì 10 agosto",
       titolo: "Danzica, galeone a Westerplatte, Sopot, cena di chiusura",
       base: "Danzica",
       sveglia: "~8:30 (lenta)",
@@ -360,22 +360,22 @@ const VIAGGIO = {
           mappa: "https://www.google.com/maps/search/?api=1&query=Dlugie%20Pobrzeze%2011%2C%20Gdansk%2C%20Poland" },
         { ora: "12:00", fisso: true, titolo: "Galeone 'Lew' > Westerplatte",
           dove: "Motlawa > Westerplatte - ~2h15 andata e ritorno",
-          note: "Dove iniziò la Seconda guerra mondiale. Partenze ogni ora 10:00-19:00, ritorni da Westerplatte 11:30-19:30. I RITORNI SONO A CADENZA ORARIA: partendo alle 12:00 si sbarca alle 12:45 e il rientro utile è quello delle 13:30, cioè 45 MINUTI SUL SITO, non un'ora. Chi vuole più tempo prende il ritorno delle 14:30 e rientra alle 15:15, ma allora Sopot si accorcia. Andata e ritorno 100 zl intero / 75 ridotto (ridotto solo fino a 26 anni). Tutti seduti. Biglietti in cassa. Se le 12:00 sono piene si prende la corsa dopo, ma Sopot si accorcia." },
+          note: "Dove iniziò la Seconda guerra mondiale. Partenze ogni ora 10:00-19:00, ritorni da Westerplatte 11:30-19:30. I RITORNI SONO A CADENZA ORARIA: partendo alle 12:00 si sbarca alle 12:45 e il rientro utile è quello delle 13:30, cioè 45 MINUTI SUL SITO, non un'ora. Chi vuole più tempo prende il ritorno delle 14:30 e rientra alle 15:15, ma allora Sopot si accorcia. Andata e ritorno 100 zł intero / 75 ridotto (ridotto solo fino a 26 anni). Tutti seduti. Biglietti in cassa. Se le 12:00 sono piene si prende la corsa dopo, ma Sopot si accorcia." },
         { ora: "~14:15", titolo: "Pranzo leggero sul lungofiume", dove: "Danzica - ~60 min" },
         { ora: "~15:20", titolo: "Verso la stazione + treno SKM per Sopot",
-          dove: "Bolt/tram ~10 min + treno 26 min - ~5,20-6,50 zl",
+          dove: "Bolt/tram ~10 min + treno 26 min - ~5,20-6,50 zł",
           note: "I 26 minuti sono misurati DALLA STAZIONE, non dal lungofiume: vanno aggiunti ~10 min per raggiungerla (a piedi sarebbero 32). Treni ogni 7-10 minuti d'estate.",
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Gdansk%20Glowny%2C%20Gdansk%2C%20Poland&destination=Molo%20w%20Sopocie%2C%20Sopot%2C%20Poland&travelmode=transit" },
         { ora: "~16:00", titolo: "Sopot: il molo di legno più lungo d'Europa (511 m)",
           dove: "Sopot - ~2h30 a piedi",
-          note: "Spiaggia, via Monte Cassino, bagno nel Baltico. Molo a pagamento in estate: 10 zl intero / 5 ridotto (dal 27/6 al 31/8, 24h su 24). Spiaggia e via Monte Cassino gratis. Molo piano in legno: comodo per tutti." },
+          note: "Spiaggia, via Monte Cassino, bagno nel Baltico. Molo a pagamento in estate: 10 zł intero / 5 ridotto (dal 27/6 al 31/8, 24h su 24). Spiaggia e via Monte Cassino gratis. Molo piano in legno: comodo per tutti." },
         { ora: "~18:30", titolo: "Rientro a Danzica", dove: "Treno + tram/Bolt - ~26 min",
           note: "18:30 e NON 19:00: altrimenti si arriva alla cena delle 20:00 direttamente dalla spiaggia, senza passare dall'hotel." },
         { ora: "20:00", fisso: true, ok: true, titolo: "Cena di chiusura - Zafishowani - CONFERMATA",
           dove: "Tokarska 6, accanto al Zuraw - 15 min a piedi (1,1 km)",
           tel: "+48661511811",
           attenzione: "Il numero di telefono lasciato al locale è salvato SENZA il +39: se chiamano da un numero polacco quel numero non esiste. Si corregge dal link di riepilogo della prenotazione.",
-          note: "Confermata dal locale l'1/8 alle 13:45. Aperto lunedi 13:00-23:00, cucina fino alle 22:30. Pesce e frutti di mare, fine-dining sul Motlawa: la cena-ricordo. ~26-36 euro a testa PIÙ il 12,5% di servizio automatico.",
+          note: "Confermata dal locale l'1/8 alle 13:45. Aperto lunedì 13:00-23:00, cucina fino alle 22:30. Pesce e frutti di mare, fine-dining sul Motlawa: la cena-ricordo. ~26-36 euro a testa PIÙ il 12,5% di servizio automatico.",
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Hotel%20Sadova%2C%20Lakowa%2060%2C%2080-769%20Gdansk%2C%20Poland&destination=Zafishowani%2C%20Tokarska%206%2C%20Gdansk%2C%20Poland&travelmode=walking" },
         { ora: "~22:15", titolo: "Rientro a piedi", dove: "Sadova - ~15 min", note: "Ultima notte." }
       ],
@@ -387,7 +387,7 @@ const VIAGGIO = {
     {
       n: 8,
       data: "2026-08-11",
-      etichetta: "Martedi 11 agosto",
+      etichetta: "Martedì 11 agosto",
       titolo: "Ultima mattina > riconsegna auto > volo di sera",
       base: "volo",
       sveglia: "~8:30 (lenta)",
@@ -402,7 +402,7 @@ const VIAGGIO = {
           note: "Non appesantirsi prima del volo." },
         { ora: "~13:45", titolo: "Rientro, check-out, carico bagagli", dove: "Sadova - ~1h",
           attenzione: "Il check-out è alle 11:00 e il volo alle 19:15: tutta l'ultima giornata è costruita su un DEPOSITO BAGAGLI MAI CONFERMATO. Va chiesto (+48 58 382 30 30).",
-          note: "Controllare di non lasciare nulla. Tassa di soggiorno 41,52 zl da saldare." },
+          note: "Controllare di non lasciare nulla. Tassa di soggiorno 41,52 zł da saldare." },
         { ora: "~15:15", titolo: "Danzica > aeroporto GDN",
           dove: "18 km in auto - 25 min (fino a 36 col traffico peggiore)",
           mappa: "https://www.google.com/maps/dir/?api=1&origin=Hotel%20Sadova%2C%20Lakowa%2060%2C%2080-769%20Gdansk%2C%20Poland&destination=Gdansk%20Lech%20Walesa%20Airport%2C%20Slowackiego%20210%2C%20Gdansk%2C%20Poland&travelmode=driving" },
@@ -435,36 +435,36 @@ const VIAGGIO = {
         tel: "+48665301600" }
     ],
     online: [
-      { titolo: "Check-in Ryanair - volo di andata", testo: "Si apre lunedi 3/8 alle 9:05 e chiude 2 ore prima del volo. Carte d'imbarco SOLO digitali: app installata e accesso già fatto." },
+      { titolo: "Check-in Ryanair - volo di andata", testo: "Si apre lunedì 3/8 alle 9:05 e chiude 2 ore prima del volo. Carte d'imbarco SOLO digitali: app installata e accesso già fatto." },
       { titolo: "Check-in Wizz Air - volo di ritorno", testo: "Da provare subito: i posti 27A-27D risultano già assegnati, quindi la finestra dovrebbe essere aperta. Al banco costa 50 euro a persona. Vale per 4 persone: GLI ZII DEVONO FARE IL LORO." },
-      { titolo: "Check-in online ibis DEGLI ZII", testo: "Quello di Raffaele è FATTO il 2/8 e vale per 2 camere / 4 adulti. Gli zii hanno una prenotazione separata e la finestra chiude alle 07:00 del 4/8, cioè mentre siete già in aeroporto. Da fare entro lunedi 3/8 sera. Verificare anche che sul codice di Raffaele risultino registrate ENTRAMBE le camere." },
-      { titolo: "Podwale 25 - il tavolo di martedi", testo: "Prenotato su mojstolik.pl l'1/8, ma in Gmail non è arrivata né conferma né ricevuta. Verificare l'SMS sul telefono, altrimenti telefonare.", tel: "+48226356314" }
+      { titolo: "Check-in online ibis DEGLI ZII", testo: "Quello di Raffaele è FATTO il 2/8 e vale per 2 camere / 4 adulti. Gli zii hanno una prenotazione separata e la finestra chiude alle 07:00 del 4/8, cioè mentre siete già in aeroporto. Da fare entro lunedì 3/8 sera. Verificare anche che sul codice di Raffaele risultino registrate ENTRAMBE le camere." },
+      { titolo: "Podwale 25 - il tavolo di martedì", testo: "Prenotato su mojstolik.pl l'1/8, ma in Gmail non è arrivata né conferma né ricevuta. Verificare l'SMS sul telefono, altrimenti telefonare.", tel: "+48226356314" }
     ],
     piccole: [
       { titolo: "Colazione al Robert's Port sabato", testo: "Si parte alle 7:00 con 239 km davanti: se la colazione apre alle 8 serve un cestino. Telefonata mai fatta.", tel: "+48874298400" },
-      { titolo: "Parcheggio al Sadova", testo: "70 zl al giorno per auto, non prenotabile: 2 auto x 3 giorni = ~420 zl. Mai chiesto se c'è posto durante il Jarmark né qual è il ripiego.", tel: "+48583823030" },
+      { titolo: "Parcheggio al Sadova", testo: "70 zł al giorno per auto, non prenotabile: 2 auto x 3 giorni = ~420 zł. Mai chiesto se c'è posto durante il Jarmark né qual è il ripiego.", tel: "+48583823030" },
       { titolo: "Deposito bagagli al Sadova l'11/8", testo: "Check-out alle 11:00, volo alle 19:15: l'ultima giornata è costruita su un deposito mai confermato.", tel: "+48583823030" },
       { titolo: "Letti al Sadova", testo: "È un monolocale per 4, non tre camere: Raffaele ed Emanuele condividono un matrimoniale. Verificare al check-in." },
       { titolo: "Telefono su Zafishowani", testo: "Salvato senza il +39: se il locale chiama da un numero polacco, quel numero non esiste. Si corregge dal link di riepilogo della prenotazione." },
-      { titolo: "Telefonare il kayak la sera prima", testo: "Giovedi sera va confermato l'appuntamento di venerdi mattina.", tel: "+48600029035" },
+      { titolo: "Telefonare il kayak la sera prima", testo: "Giovedì sera va confermato l'appuntamento di venerdì mattina.", tel: "+48600029035" },
       { titolo: "Scaricare le mappe offline di Google Maps", testo: "AGGIUNTA DI OGGI, non era nei file del progetto. I percorsi qui dentro aprono l'app Google Maps, ma per navigare senza rete serve aver scaricato prima le aree: Varsavia, Masuria (Mikolajki), Danzica e la costa di Leba. In Google Maps: profilo > Mappe offline > Seleziona la tua mappa.", aggiunta: true }
     ]
   },
 
   /* ------------------------------------------------------------------ SOLDI */
   soldi: {
-    riassunto: "Stima per il gruppo: 1.500-2.000 zl in contanti. Al bancomat SEMPRE in zloty, MAI in euro.",
+    riassunto: "Stima per il gruppo: 1.500-2.000 zł in contanti. Al bancomat SEMPRE in złoty, MAI in euro.",
     voci: [
-      { q: "360 zl", t: "Kayak, venerdi mattina", d: "In CONTANTI, da avere prima di lasciare il resort: si paga sul posto prima della discesa." },
-      { q: "~1.954 zl", t: "I quattro ingressi in cassa (~455 euro)", d: "Malbork 440 + Zoo 250 + Sea Park 714 + galeone 550. Carta accettata ovunque (in Polonia il POS c'è dappertutto), ma dev'esserci capienza." },
-      { q: "~420 zl", t: "Parcheggio al Sadova", d: "70 zl al giorno per auto, 2 auto x 3 giorni. Non prenotabile." },
-      { q: "41,52 zl", t: "Tassa di soggiorno a Danzica", d: "Al check-out." },
-      { q: "~50-70 zl", t: "Melex alle dune, a testa", d: "Andata e ritorno. Il vecchio piano diceva 25-35: era solo andata." },
-      { q: "94 zl", t: "Torre di Malbork per sei", d: "Biglietto a parte, 17 zl intero / 13 ridotto. Si sale 11:00-18:15." },
-      { q: "15 zl", t: "Parcheggio alla Tana del Lupo", d: "Più 30 zl intero / 25 ridotto di ingresso." },
-      { q: "10/5 zl", t: "Ingresso Parco Slowinski e molo di Sopot", d: "Intero / ridotto. Il molo è a pagamento dal 27/6 al 31/8, 24h su 24." },
-      { q: "4,40 zl", t: "Biglietto mezzi a Varsavia", d: "Zona 1, vale 75 minuti." },
-      { q: "85 zl", t: "Colazione al Sadova, a persona", d: "NON è inclusa nel soggiorno." }
+      { q: "360 zł", t: "Kayak, venerdì mattina", d: "In CONTANTI, da avere prima di lasciare il resort: si paga sul posto prima della discesa." },
+      { q: "~1.954 zł", t: "I quattro ingressi in cassa (~455 euro)", d: "Malbork 440 + Zoo 250 + Sea Park 714 + galeone 550. Carta accettata ovunque (in Polonia il POS c'è dappertutto), ma dev'esserci capienza." },
+      { q: "~420 zł", t: "Parcheggio al Sadova", d: "70 zł al giorno per auto, 2 auto x 3 giorni. Non prenotabile." },
+      { q: "41,52 zł", t: "Tassa di soggiorno a Danzica", d: "Al check-out." },
+      { q: "~50-70 zł", t: "Melex alle dune, a testa", d: "Andata e ritorno. Il vecchio piano diceva 25-35: era solo andata." },
+      { q: "94 zł", t: "Torre di Malbork per sei", d: "Biglietto a parte, 17 zł intero / 13 ridotto. Si sale 11:00-18:15." },
+      { q: "15 zł", t: "Parcheggio alla Tana del Lupo", d: "Più 30 zł intero / 25 ridotto di ingresso." },
+      { q: "10/5 zł", t: "Ingresso Parco Slowinski e molo di Sopot", d: "Intero / ridotto. Il molo è a pagamento dal 27/6 al 31/8, 24h su 24." },
+      { q: "4,40 zł", t: "Biglietto mezzi a Varsavia", d: "Zona 1, vale 75 minuti." },
+      { q: "85 zł", t: "Colazione al Sadova, a persona", d: "NON è inclusa nel soggiorno." }
     ],
     documenti: "In tasca, che in cassa li guardano davvero: la TESSERA UNIVERSITARIA di Raffaele (ridotto valido a Malbork, Zoo, galeone e Tana del Lupo - NON al Sea Park) e un DOCUMENTO DI EMANUELE, 16 anni."
   },
@@ -473,10 +473,10 @@ const VIAGGIO = {
   cassa: {
     intro: "Castello di Malbork, Zoo di Varsavia, Sea Park delle foche e Galeone per Westerplatte: nessuno dei quattro si prenota online, si pagano sul posto il giorno stesso. Decisione di Raffaele del 31/07, non si riapre.",
     voci: [
-      { g: "Mer 5/8", t: "Zoo di Varsavia", q: "250 zl", d: "Si risparmia la commissione di 4,50 zl. Nessuna fascia oraria. Conviene essere lì all'apertura delle 9:00, quando la fila è la più corta della giornata." },
-      { g: "Sab 8/8", t: "Castello di Malbork", q: "440 zl", d: "Non c'è più uno slot da rincorrere: cade la pressione sulla partenza delle 7:00. La nuova variabile è la FILA ALLE CASSE di un sabato d'agosto. La lingua dell'audioguida si sceglieva comunque sul posto." },
-      { g: "Dom 9/8", t: "Sea Park Sarbsk", q: "714 zl", d: "Parcheggio da 20 zl incluso nel totale. Sei biglietti allo sportello PRIMA dello spettacolo delle 16:00: partire da Leba alle 15:05, non 15:20." },
-      { g: "Lun 10/8", t: "Galeone per Westerplatte", q: "550 zl", d: "Andata e ritorno. Partenze ogni ora dalle 10:00 alle 19:00: se le 12:00 sono piene si prende la corsa dopo, ma Sopot si accorcia. Presentarsi 20-30 minuti prima. ATTENZIONE AL MOLO: dal 31 luglio l'imbarco è a Dlugie Pobrzeze 11, accanto al Gdanski Bowke, NON più a ul. Wartka." }
+      { g: "Mer 5/8", t: "Zoo di Varsavia", q: "250 zł", d: "Si risparmia la commissione di 4,50 zł. Nessuna fascia oraria. Conviene essere lì all'apertura delle 9:00, quando la fila è la più corta della giornata." },
+      { g: "Sab 8/8", t: "Castello di Malbork", q: "440 zł", d: "Non c'è più uno slot da rincorrere: cade la pressione sulla partenza delle 7:00. La nuova variabile è la FILA ALLE CASSE di un sabato d'agosto. La lingua dell'audioguida si sceglieva comunque sul posto." },
+      { g: "Dom 9/8", t: "Sea Park Sarbsk", q: "714 zł", d: "Parcheggio da 20 zł incluso nel totale. Sei biglietti allo sportello PRIMA dello spettacolo delle 16:00: partire da Leba alle 15:05, non 15:20." },
+      { g: "Lun 10/8", t: "Galeone per Westerplatte", q: "550 zł", d: "Andata e ritorno. Partenze ogni ora dalle 10:00 alle 19:00: se le 12:00 sono piene si prende la corsa dopo, ma Sopot si accorcia. Presentarsi 20-30 minuti prima. ATTENZIONE AL MOLO: dal 31 luglio l'imbarco è a Dlugie Pobrzeze 11, accanto al Gdanski Bowke, NON più a ul. Wartka." }
     ]
   },
 
@@ -488,7 +488,7 @@ const VIAGGIO = {
     { gruppo: "Hotel", voci: [
       { n: "ibis Styles Warszawa City", t: "+48224883300", nota: "Varsavia, 4-6/8. Grzybowska 43." },
       { n: "Hotel Robert's Port", t: "+48874298400", nota: "Masuria, 6-8/8. Stare Sady 4, Mikolajki." },
-      { n: "Robert's Port - ristorante", t: "+48875065400", nota: "Cena di giovedi." },
+      { n: "Robert's Port - ristorante", t: "+48875065400", nota: "Cena di giovedì." },
       { n: "Hotel Sadova - reception", t: "+48583823030", nota: "Danzica, 8-11/8. Lakowa 60. Anche per Papieroovka." }
     ]},
     { gruppo: "Auto", voci: [
@@ -496,7 +496,7 @@ const VIAGGIO = {
       { n: "Europcar aeroporto GDN", t: "+48665301685", nota: "Riconsegna dell'11/8: spostare alle 16:00." }
     ]},
     { gruppo: "Attività", voci: [
-      { n: "Kayak Sakowscy / Wan Plac", t: "+48600029035", nota: "Venerdi mattina. Un dipendente parla italiano." },
+      { n: "Kayak Sakowscy / Wan Plac", t: "+48600029035", nota: "Venerdì mattina. Un dipendente parla italiano." },
       { n: "Melex alle dune di Leba", t: "+48886354555", nota: "Navetta elettrica, domenica." },
       { n: "Zoo di Varsavia", t: "+48226194041", nota: "Solo se si vuole l'interno della Villa Zabinski." }
     ]},
@@ -508,7 +508,7 @@ const VIAGGIO = {
     { gruppo: "Ristoranti - da confermare", voci: [
       { n: "Podwale 25 (mar 4/8)", t: "+48226356314", nota: "Nessuna conferma arrivata: verificare l'SMS." },
       { n: "Spizarnia Mazury (ven 7/8)", t: "+48451101330", nota: "Silenzio dal 1/8. Altro numero: +48 509 188 057." },
-      { n: "w Zatoce (ven 7/8, alternativa)", t: "+48874219000", nota: "È un hotel: la reception risponde sempre. Chiude alle 21:00 il venerdi." },
+      { n: "w Zatoce (ven 7/8, alternativa)", t: "+48874219000", nota: "È un hotel: la reception risponde sempre. Chiude alle 21:00 il venerdì." },
       { n: "Bistro na Fali (pranzo sab 8/8)", t: "+48534610670", nota: "Silenzio dal 1/8. Aperto da mezzogiorno tutti i giorni." },
       { n: "True (dom 9/8)", t: "+48727600601", nota: "Silenzio dal 1/8." }
     ]},
@@ -528,9 +528,9 @@ const VIAGGIO = {
       { tipo: "Volo ritorno", t: "Wizz Air W6 1685", d: "Mar 11/8, Danzica 19:15 > Catania 22:20. Posti 27A-27D. SOLO bagaglio a mano: 1 trolley 55x40x23 + 1 borsina 40x30x20 a testa." },
       { tipo: "Transfer", t: "Welcome Pickups, 75 euro", d: "Mar 4/8 da Modlin all'ibis. Minivan da 8 posti (non da 4). L'autista monitora il volo. Cercare l'hotel per indirizzo Grzybowska 43, mai per nome." },
       { tipo: "Hotel 1", t: "ibis Styles Warszawa City", d: "Grzybowska 43, Varsavia. 4-6/8, 2 camere per 4 adulti. Camera dalle 15:00, rilascio entro le 11:00. Zero da saldare: prepagato, colazione e WiFi inclusi. Tariffa NON rimborsabile. Check-in online fatto il 2/8." },
-      { tipo: "Auto", t: "Europcar - Renault Clio", d: "Ritiro giovedi 6/8 ore 9:00 all'MPOINT del Novotel Centrum, Marszalkowska 94/98. Prepagata. Secondo guidatore e Premium Protection inclusi. Deposito di 300 euro bloccato sulla carta. Riconsegna martedi 11/8 all'aeroporto GDN, Slowackiego 210A - DA SPOSTARE alle 16:00." },
+      { tipo: "Auto", t: "Europcar - Renault Clio", d: "Ritiro giovedì 6/8 ore 9:00 all'MPOINT del Novotel Centrum, Marszalkowska 94/98. Prepagata. Secondo guidatore e Premium Protection inclusi. Deposito di 300 euro bloccato sulla carta. Riconsegna martedì 11/8 all'aeroporto GDN, Slowackiego 210A - DA SPOSTARE alle 16:00." },
       { tipo: "Hotel 2", t: "Hotel Robert's Port", d: "Stare Sady 4, Mikolajki. 6-8/8, Domek Zeglarza, già pagato, intestato a Carlo. Lake resort & spa: piscina coperta, jacuzzi, sauna, hammam, spiaggia sul lago inclusi. Ristorante aperto 12:00-22:00. Parcheggio in superficie sul posto." },
-      { tipo: "Hotel 3", t: "Hotel Sadova", d: "Lakowa 60, Danzica. 8-11/8, già pagato, non rimborsabile, intestato a Raffaele. È un MONOLOCALE PER 4. Colazione esclusa (85 zl a persona). Tassa di soggiorno 41,52 zl in loco. Parcheggio 70 zl al giorno per auto, non prenotabile." },
+      { tipo: "Hotel 3", t: "Hotel Sadova", d: "Lakowa 60, Danzica. 8-11/8, già pagato, non rimborsabile, intestato a Raffaele. È un MONOLOCALE PER 4. Colazione esclusa (85 zł a persona). Tassa di soggiorno 41,52 zł in loco. Parcheggio 70 zł al giorno per auto, non prenotabile." },
       { tipo: "Cene confermate", t: "Beef & Pepper, Kubicki, Zafishowani", d: "Mer 5/8 ore 20:00 sala INSIDE - Sab 8/8 ore 19:30 - Lun 10/8 ore 20:00. Tutte per 6 persone." },
       { tipo: "Cene da confermare", t: "Podwale 25, Spizarnia/w Zatoce, Bistro na Fali, True", d: "Mar 4/8 20:30 - Ven 7/8 19:30 (o 19:00 se vince w Zatoce) - Sab 8/8 pranzo 14:15 - Dom 9/8 20:00." },
       { tipo: "Regola ferma", t: "Le prenotazioni di Raffaele coprono 4 persone, MAI gli zii", d: "Accertato il 2/8 su due casi indipendenti (volo Wizz = 4 passeggeri, hotel ibis = 2 camere / 4 adulti). Gli zii viaggiano su codici propri e devono fare da soli i loro check-in. Davanti a qualunque prenotazione, prima di darla per buona: per quante persone vale?" }

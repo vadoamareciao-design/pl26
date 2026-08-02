@@ -2,162 +2,163 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Polonia 2026</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0f1420">
+<meta name="theme-color" content="#ffffff">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Polonia">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <style>
   :root{
-    --bg:#0f1420; --bg2:#161d2d; --card:#1b2333; --line:#2a3448;
-    --txt:#e8edf7; --dim:#9aa7bd; --acc:#ffb340; --ok:#4ade80;
-    --warn:#ff8a5b; --red:#ff5f6d; --blu:#5aa9ff;
-    --safe-b: env(safe-area-inset-bottom, 0px);
-    --safe-t: env(safe-area-inset-top, 0px);
+    --pg:#ffffff;        /* carta */
+    --tx:#15181d;        /* inchiostro */
+    --gr:#6a7280;        /* grigio */
+    --gr2:#9aa1ac;       /* grigio chiaro */
+    --ln:#e6e8ec;        /* righe */
+    --rd:#c8102e;        /* rosso polacco: solo per gli orari e le cose fisse */
+    --vd:#1a7f4b;        /* verde: confermato */
+    --ar:#b26a00;        /* ambra: da confermare */
+    --bx:#fbf3f2;        /* fondo degli avvisi */
+    --sb: env(safe-area-inset-bottom, 0px);
+    --st: env(safe-area-inset-top, 0px);
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-  html,body{margin:0; padding:0; background:var(--bg); color:var(--txt);
-    font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
-    overscroll-behavior-y:none;}
-  body{padding-top:var(--safe-t); padding-bottom:calc(62px + var(--safe-b));}
-  a{color:var(--blu)}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--pg); color:var(--tx);
+    font:17px/1.62 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+    padding-bottom:calc(66px + var(--sb));
+    overscroll-behavior-y:none;
+  }
+  a{color:inherit}
 
-  header{position:sticky; top:0; z-index:20; background:rgba(15,20,32,.92);
-    backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--line);
-    padding:10px 16px 8px; padding-top:calc(10px + var(--safe-t)); margin-top:calc(-1 * var(--safe-t));}
-  header h1{margin:0; font-size:17px; font-weight:700; letter-spacing:.2px}
-  header .sub{color:var(--dim); font-size:12px; margin-top:1px}
-  #net{display:none; background:var(--warn); color:#20140a; font-size:12px;
-    font-weight:700; text-align:center; padding:4px}
+  /* ---------------- testata ---------------- */
+  header{
+    position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--ln);
+    padding:12px 20px 11px; padding-top:calc(12px + var(--st));
+  }
+  header h1{margin:0; font-size:17px; font-weight:700; letter-spacing:-.2px}
+  header .sub{color:var(--gr2); font-size:12.5px; margin-top:1px}
+  #net{display:none; background:#fff4e5; color:#8a5200; font-size:13px;
+       text-align:center; padding:7px 16px; border-bottom:1px solid #f0dcbe}
   body.offline #net{display:block}
 
-  main{padding:14px 14px 24px; max-width:760px; margin:0 auto}
+  main{padding:0 20px 40px; max-width:680px; margin:0 auto}
   .view{display:none} .view.on{display:block}
 
-  h2.sec{font-size:13px; text-transform:uppercase; letter-spacing:1.2px;
-    color:var(--dim); margin:22px 0 10px; font-weight:700}
-  h2.sec:first-child{margin-top:2px}
+  /* ---------------- testata del giorno ---------------- */
+  .dh{padding:26px 0 6px}
+  .dh .kick{font-size:12.5px; font-weight:700; letter-spacing:.9px;
+            text-transform:uppercase; color:var(--rd)}
+  .dh h2{margin:7px 0 0; font-size:27px; line-height:1.22;
+         font-weight:700; letter-spacing:-.5px}
+  .dh .meta{color:var(--gr); font-size:15px; margin-top:11px}
+  .dh .cap{margin-top:18px; font-size:16px; color:#3a4048; line-height:1.6}
 
-  /* --- selettore giorni --- */
-  .pills{display:flex; gap:7px; overflow-x:auto; padding:2px 0 12px; scrollbar-width:none}
+  /* ---------------- una tappa ---------------- */
+  .tp{padding:26px 0; border-top:1px solid var(--ln)}
+  .tp:first-of-type{border-top:1px solid var(--tx)}
+  .tp .ora{font-size:14px; font-weight:700; color:var(--rd);
+           font-variant-numeric:tabular-nums; letter-spacing:.2px}
+  .tp .ora .lk{font-size:12px; color:var(--gr2); font-weight:600; margin-left:6px}
+  .tp.ok  .ora{color:var(--vd)}
+  .tp.apr .ora{color:var(--ar)}
+  .tp h3{margin:6px 0 0; font-size:20px; line-height:1.32;
+         font-weight:650; letter-spacing:-.3px}
+  .tp .dove{margin-top:9px; color:var(--gr); font-size:15.5px; line-height:1.55}
+  .tp .nota{margin-top:14px; font-size:16px; color:#33393f; line-height:1.66}
+  .tp .att{margin-top:16px; background:var(--bx); border-left:3px solid var(--rd);
+           padding:14px 16px; font-size:15.5px; line-height:1.62; color:#5c2a26;
+           border-radius:0 8px 8px 0}
+  .tp .att b{color:var(--rd)}
+
+  .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+  .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+       font-size:16px; font-weight:600; padding:12px 18px; border-radius:10px;
+       border:1.5px solid var(--tx); color:var(--tx); background:#fff; min-height:46px}
+  .btn.tel{border-color:var(--ln); color:var(--gr); font-weight:500}
+  .btn:active{background:#f2f3f5}
+
+  /* ---------------- code della giornata ---------------- */
+  .coda{margin-top:34px; padding-top:26px; border-top:1px solid var(--tx)}
+  .bx{margin-bottom:22px}
+  .bx .lab{display:block; font-size:12.5px; font-weight:700; letter-spacing:.9px;
+           text-transform:uppercase; color:var(--gr2); margin-bottom:7px}
+  .bx p{margin:0; font-size:16px; line-height:1.66; color:#33393f}
+
+  /* ---------------- selettore dei giorni ---------------- */
+  .pills{display:flex; gap:8px; overflow-x:auto; padding:16px 0 4px;
+         scrollbar-width:none; margin:0 -20px; padding-left:20px; padding-right:20px}
   .pills::-webkit-scrollbar{display:none}
-  .pill{flex:0 0 auto; background:var(--card); border:1px solid var(--line);
-    color:var(--dim); border-radius:12px; padding:7px 12px; font-size:13px;
-    font-weight:600; cursor:pointer; white-space:nowrap}
-  .pill.on{background:var(--acc); border-color:var(--acc); color:#241703}
-  .pill .d{display:block; font-size:10px; font-weight:500; opacity:.75}
+  .pill{flex:0 0 auto; background:#fff; border:1.5px solid var(--ln); color:var(--gr);
+        border-radius:10px; padding:9px 14px; font:inherit; font-size:14.5px;
+        font-weight:650; cursor:pointer; white-space:nowrap; line-height:1.25; text-align:center}
+  .pill span{display:block; font-size:11.5px; font-weight:500; color:var(--gr2); margin-top:1px}
+  .pill.on{background:var(--tx); border-color:var(--tx); color:#fff}
+  .pill.on span{color:#b9bfc8}
 
-  /* --- intestazione giorno --- */
-  .dayhead{background:var(--bg2); border:1px solid var(--line); border-radius:14px;
-    padding:13px 14px; margin-bottom:14px}
-  .dayhead .t{font-size:19px; font-weight:700; line-height:1.25}
-  .dayhead .m{color:var(--dim); font-size:13px; margin-top:5px}
-  .dayhead .cap{margin-top:9px; font-size:13.5px; color:#d5deee;
-    border-left:3px solid var(--acc); padding-left:10px}
-  .tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 7px;
-    border-radius:6px; margin-right:5px; vertical-align:1px}
-  .tag.alto{background:#4a1d24; color:#ff9aa5} .tag.medio{background:#2b3a22; color:#b9e08a}
-  .tag.base{background:#22304a; color:#9dc4ff}
+  /* ---------------- liste delle altre schede ---------------- */
+  h4.sec{font-size:12.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+         color:var(--gr2); margin:36px 0 0; padding-bottom:10px; border-bottom:1px solid var(--tx)}
+  h4.sec:first-child{margin-top:26px}
+  .it{padding:24px 0; border-top:1px solid var(--ln)}
+  .it:first-of-type{border-top:0}
+  .it h3{margin:0; font-size:19px; line-height:1.34; font-weight:650; letter-spacing:-.25px}
+  .it p{margin:10px 0 0; font-size:16px; line-height:1.66; color:#33393f}
+  .it.rossa h3{color:var(--rd)}
+  .it .kick{display:block; font-size:12px; font-weight:700; letter-spacing:.8px;
+            text-transform:uppercase; color:var(--gr2); margin-bottom:6px}
+  .tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.5px;
+       padding:3px 8px; border-radius:5px; background:#f3f4f6; color:var(--gr);
+       margin-left:8px; vertical-align:2px; text-transform:uppercase}
 
-  /* --- tappe --- */
-  .tappa{background:var(--card); border:1px solid var(--line); border-radius:14px;
-    padding:12px 13px; margin-bottom:9px}
-  .tappa.fisso{border-left:4px solid var(--acc)}
-  .tappa.ok{border-left:4px solid var(--ok)}
-  .tappa.aperta{border-left:4px solid var(--warn)}
-  .ora{font-size:12.5px; font-weight:800; color:var(--acc); letter-spacing:.4px}
-  .tappa.ok .ora{color:var(--ok)}
-  .tit{font-size:16px; font-weight:650; margin:2px 0 0; line-height:1.35}
-  .dove{color:var(--dim); font-size:13.5px; margin-top:4px}
-  .nota{font-size:13.5px; color:#c3cee0; margin-top:7px}
-  .att{font-size:13.5px; background:#3a1d18; border:1px solid #5d2c22; color:#ffc0ad;
-    border-radius:9px; padding:8px 10px; margin-top:8px}
-  .att b{color:#ff8f70}
-  .btns{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-  .btn{display:inline-flex; align-items:center; gap:6px; background:#243350;
-    border:1px solid #33456b; color:#cfe0ff; text-decoration:none; font-size:14px;
-    font-weight:650; padding:9px 13px; border-radius:11px; min-height:40px}
-  .btn.tel{background:#1e3a2a; border-color:#2c5540; color:#a9e9c2}
-  .btn:active{opacity:.65}
+  .intro{margin:26px 0 0; padding:18px 20px; background:var(--bx);
+         border-left:3px solid var(--rd); border-radius:0 8px 8px 0;
+         font-size:16px; line-height:1.62; color:#5c2a26}
+  .intro.verde{background:#f0f8f3; border-color:var(--vd); color:#1c4a33}
 
-  /* --- box coda giornata --- */
-  .box{border-radius:13px; padding:11px 13px; margin-top:10px; font-size:13.5px}
-  .box .lab{font-size:11px; font-weight:800; letter-spacing:.9px; text-transform:uppercase;
-    display:block; margin-bottom:4px}
-  .box.pb{background:#16283a; border:1px solid #24405c} .box.pb .lab{color:#7cc0f5}
-  .box.vv{background:#2b2437; border:1px solid #423658} .box.vv .lab{color:#c3a5f0}
-  .box.al{background:#232a1c; border:1px solid #3b472c} .box.al .lab{color:#bcd68a}
-  .box.nt{background:#1e2433; border:1px solid #2f3a50} .box.nt .lab{color:var(--dim)}
+  .q{display:block; font-size:22px; font-weight:700; letter-spacing:-.4px}
 
-  /* --- liste generiche --- */
-  .item{background:var(--card); border:1px solid var(--line); border-radius:13px;
-    padding:12px 13px; margin-bottom:9px}
-  .item .h{font-size:15.5px; font-weight:650; line-height:1.35}
-  .item .b{font-size:13.5px; color:#c3cee0; margin-top:5px}
-  .item.rossa{border-left:4px solid var(--red)}
-  .item.rossa .h{color:#ff97a1}
-  .kicker{font-size:11px; font-weight:800; letter-spacing:.8px; text-transform:uppercase;
-    color:var(--acc); display:block; margin-bottom:3px}
-  .nuovo{background:#3d2e12; border:1px solid #5e4718; color:#ffd591;
-    font-size:10.5px; font-weight:800; padding:2px 6px; border-radius:5px; margin-left:6px}
-
-  .money{display:flex; gap:12px; align-items:baseline}
-  .money .q{flex:0 0 88px; font-weight:800; color:var(--acc); font-size:15px}
-  .avviso{background:#3a1d18; border:1px solid #5d2c22; color:#ffc0ad;
-    border-radius:12px; padding:11px 13px; font-size:13.5px; margin-bottom:14px}
-
-  table.cassa{width:100%; border-collapse:collapse; font-size:13.5px}
-  table.cassa td{padding:9px 6px; border-bottom:1px solid var(--line); vertical-align:top}
-  table.cassa td.g{color:var(--dim); white-space:nowrap; width:74px}
-  table.cassa td.q{color:var(--acc); font-weight:800; text-align:right; white-space:nowrap}
-
-  /* --- barra in fondo --- */
+  /* ---------------- barra in fondo ---------------- */
   nav{position:fixed; left:0; right:0; bottom:0; z-index:30; display:flex;
-    background:rgba(22,29,45,.96); backdrop-filter:saturate(180%) blur(14px);
-    border-top:1px solid var(--line); padding-bottom:var(--safe-b)}
-  nav button{flex:1; background:none; border:0; color:var(--dim); font:inherit;
-    font-size:9.5px; font-weight:700; padding:7px 1px 6px; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:2px; letter-spacing:.1px}
-  nav button .i{font-size:19px; line-height:1}
-  nav button.on{color:var(--acc)}
-  .foot{color:#5f6c82; font-size:11.5px; text-align:center; margin-top:26px; line-height:1.6}
+      background:rgba(255,255,255,.96); backdrop-filter:saturate(180%) blur(12px);
+      border-top:1px solid var(--ln); padding-bottom:var(--sb)}
+  nav button{flex:1; min-width:0; background:none; border:0; font:inherit;
+             font-size:10px; font-weight:600; color:var(--gr2); cursor:pointer;
+             padding:9px 2px 8px; display:flex; flex-direction:column;
+             align-items:center; gap:3px; letter-spacing:.1px}
+  nav button svg{width:21px; height:21px; stroke:currentColor; fill:none;
+                 stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+  nav button.on{color:var(--tx)}
+  .foot{margin-top:46px; padding-top:20px; border-top:1px solid var(--ln);
+        color:var(--gr2); font-size:13px; line-height:1.6; text-align:center}
 </style>
 </head>
 <body>
 
-<div id="net">Sei offline &mdash; l'app funziona lo stesso. I percorsi hanno bisogno di rete.</div>
-
 <header>
-  <h1 id="hTitle">Polonia 2026</h1>
-  <div class="sub" id="hSub">4 - 11 agosto</div>
+  <h1 id="hT">Polonia 2026</h1>
+  <div class="sub" id="hS">4 &ndash; 11 agosto</div>
 </header>
+<div id="net">Sei offline. L&rsquo;app funziona lo stesso &mdash; solo i percorsi hanno bisogno di rete.</div>
 
 <main>
   <section class="view" id="v-oggi"></section>
-  <section class="view" id="v-giorni">
-    <div class="pills" id="pills"></div>
-    <div id="giornoBox"></div>
-  </section>
+  <section class="view" id="v-giorni"><div class="pills" id="pills"></div><div id="gbox"></div></section>
   <section class="view" id="v-dafare"></section>
   <section class="view" id="v-pren"></section>
   <section class="view" id="v-tel"></section>
   <section class="view" id="v-soldi"></section>
 </main>
 
-<nav id="nav">
-  <button data-v="oggi"   class="on"><span class="i">&#9728;</span>Oggi</button>
-  <button data-v="giorni"><span class="i">&#128197;</span>Giorni</button>
-  <button data-v="dafare"><span class="i">&#9989;</span>Da fare</button>
-  <button data-v="pren"><span class="i">&#128188;</span>Prenot.</button>
-  <button data-v="tel"><span class="i">&#128222;</span>Numeri</button>
-  <button data-v="soldi"><span class="i">&#128176;</span>Soldi</button>
-</nav>
+<nav id="nav"></nav>
 
 <script src="dati.js"></script>
 <script>
@@ -166,215 +167,187 @@
   var $ = function(s){ return document.querySelector(s); };
   function esc(s){ return String(s==null?"":s)
     .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-  function telFmt(t){ return String(t).replace(/^(\+\d\d)(\d{3})(\d{3})(\d+)$/, "$1 $2 $3 $4"); }
+  function tel(t){ return String(t).replace(/^(\+\d\d)(\d{3})(\d{3})(\d+)$/, "$1 $2 $3 $4"); }
 
-  /* ---------- quale giorno e' oggi ---------- */
-  function oggiISO(){
-    var d = new Date();
-    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-  }
-  function indiceGiornoCorrente(){
-    var t = oggiISO(), g = VIAGGIO.giorni;
-    for (var i=0;i<g.length;i++){ if (g[i].data === t) return i; }
-    if (t < g[0].data) return -1;      // prima della partenza
-    if (t > g[g.length-1].data) return -2; // dopo il ritorno
+  /* icone della barra: tratti semplici, niente emoji */
+  var ICONE = {
+    oggi:  '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/>',
+    giorni:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    dafare:'<path d="M4 12.5l5 5L20 6.5"/>',
+    pren:  '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/>',
+    tel:   '<path d="M6.5 3h3l1.5 4-2 1.5a13 13 0 006.5 6.5L17 13l4 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 013.5 5.2 2 2 0 015.5 3z"/>',
+    soldi: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.7 0-2.8.8-2.8 2s1.1 1.9 2.8 2 2.8.8 2.8 2-1.1 2-2.8 2c-1.2 0-2.3-.5-2.8-1.4"/>'
+  };
+  var VOCI = [["oggi","Oggi"],["giorni","Giorni"],["dafare","Da fare"],
+              ["pren","Prenot."],["tel","Numeri"],["soldi","Soldi"]];
+  $("#nav").innerHTML = VOCI.map(function(v){
+    return '<button data-v="'+v[0]+'"><svg viewBox="0 0 24 24">'+ICONE[v[0]]+'</svg>'+v[1]+'</button>';
+  }).join("");
+
+  /* ---------- che giorno e' oggi ---------- */
+  function iso(){ var d=new Date();
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function indiceOggi(){
+    var t=iso(), g=VIAGGIO.giorni;
+    for (var i=0;i<g.length;i++) if (g[i].data===t) return i;
+    if (t < g[0].data) return -1;
+    if (t > g[g.length-1].data) return -2;
     return 0;
   }
 
-  /* ---------- rendering di una tappa ---------- */
-  function tappaHTML(x){
-    var cls = "tappa" + (x.ok ? " ok" : x.aperta ? " aperta" : x.fisso ? " fisso" : "");
-    var h = '<div class="'+cls+'">';
-    if (x.ora) h += '<div class="ora">'+esc(x.ora)+(x.fisso?' &#128274;':'')+'</div>';
-    h += '<div class="tit">'+esc(x.titolo)+'</div>';
+  /* ---------- una tappa ---------- */
+  function tappa(x){
+    var c = "tp" + (x.ok ? " ok" : x.aperta ? " apr" : "");
+    var h = '<article class="'+c+'">';
+    if (x.ora) h += '<div class="ora">'+esc(x.ora)+(x.fisso?' <span class="lk">ORARIO FISSO</span>':'')+'</div>';
+    h += '<h3>'+esc(x.titolo)+'</h3>';
     if (x.dove) h += '<div class="dove">'+esc(x.dove)+'</div>';
-    if (x.attenzione) h += '<div class="att"><b>&#9888; Attenzione.</b> '+esc(x.attenzione)+'</div>';
-    if (x.note) h += '<div class="nota">'+esc(x.note)+'</div>';
+    if (x.attenzione) h += '<div class="att"><b>Attenzione.</b> '+esc(x.attenzione)+'</div>';
+    if (x.note) h += '<p class="nota">'+esc(x.note)+'</p>';
     if (x.mappa || x.tel){
       h += '<div class="btns">';
-      if (x.mappa) h += '<a class="btn" href="'+esc(x.mappa)+'" target="_blank" rel="noopener">&#128506; Apri il percorso</a>';
-      if (x.tel)   h += '<a class="btn tel" href="tel:'+esc(x.tel)+'">&#128222; '+esc(telFmt(x.tel))+'</a>';
+      if (x.mappa) h += '<a class="btn" href="'+esc(x.mappa)+'" target="_blank" rel="noopener">Apri il percorso &rarr;</a>';
+      if (x.tel)   h += '<a class="btn tel" href="tel:'+esc(x.tel)+'">'+esc(tel(x.tel))+'</a>';
       h += '</div>';
     }
-    return h + '</div>';
+    return h+'</article>';
   }
 
-  /* ---------- rendering di un giorno intero ---------- */
-  function giornoHTML(g, conTitolo){
-    var carico = /ALTO/i.test(g.carico) ? "alto" : /medio/i.test(g.carico) ? "medio" : "base";
-    var h = '<div class="dayhead">';
-    if (conTitolo) h += '<div class="m">Giorno '+g.n+' &middot; '+esc(g.etichetta)+'</div>';
-    h += '<div class="t">'+esc(g.titolo)+'</div>';
-    h += '<div class="m"><span class="tag '+carico+'">carico '+esc(g.carico)+'</span> '
-       + 'Sveglia '+esc(g.sveglia)+' &middot; notte a '+esc(g.base)+'</div>';
-    if (g.cappello) h += '<div class="cap">'+esc(g.cappello)+'</div>';
+  /* ---------- un giorno ---------- */
+  function giorno(g){
+    var h = '<div class="dh"><div class="kick">Giorno '+g.n+' &middot; '+esc(g.etichetta)+'</div>'
+          + '<h2>'+esc(g.titolo)+'</h2>'
+          + '<div class="meta">Sveglia '+esc(g.sveglia)+' &middot; notte a '+esc(g.base)
+          + ' &middot; carico '+esc(g.carico)+'</div>';
+    if (g.cappello) h += '<p class="cap">'+esc(g.cappello)+'</p>';
     h += '</div>';
-    for (var i=0;i<g.tappe.length;i++) h += tappaHTML(g.tappe[i]);
-    if (g.pianoB)      h += '<div class="box pb"><span class="lab">&#9730; Piano B meteo</span>'+esc(g.pianoB)+'</div>';
-    if (g.valvola)     h += '<div class="box vv"><span class="lab">&#128295; Valvola</span>'+esc(g.valvola)+'</div>';
-    if (g.alternative) h += '<div class="box al"><span class="lab">&#127860; Alternative</span>'+esc(g.alternative)+'</div>';
-    if (g.nota)        h += '<div class="box nt"><span class="lab">Nota</span>'+esc(g.nota)+'</div>';
+    g.tappe.forEach(function(t){ h += tappa(t); });
+    var coda = "";
+    if (g.pianoB)      coda += box("Piano B se piove", g.pianoB);
+    if (g.valvola)     coda += box("Valvola, se siamo cotti", g.valvola);
+    if (g.alternative) coda += box("Alternative", g.alternative);
+    if (g.nota)        coda += box("Nota", g.nota);
+    if (coda) h += '<div class="coda">'+coda+'</div>';
     return h;
   }
+  function box(l,t){ return '<div class="bx"><span class="lab">'+esc(l)+'</span><p>'+esc(t)+'</p></div>'; }
 
-  /* ---------- vista OGGI ---------- */
-  function renderOggi(){
-    var i = indiceGiornoCorrente(), h = "";
+  /* ---------- schede ---------- */
+  function vOggi(){
+    var i = indiceOggi(), h = "";
     if (i === -1){
       var g0 = VIAGGIO.giorni[0];
-      var ms = new Date(g0.data+"T00:00:00") - new Date(oggiISO()+"T00:00:00");
-      var gg = Math.round(ms/86400000);
-      h = '<div class="dayhead"><div class="t">Mancano '+gg+' giorn'+(gg===1?'o':'i')+'</div>'
-        + '<div class="m">Si parte '+esc(g0.etichetta.toLowerCase())+'. Qui sotto il primo giorno; '
-        + 'nella scheda <b>Da fare</b> c\'e\' tutto quello che va chiuso prima.</div></div>'
-        + giornoHTML(g0, true);
+      var gg = Math.round((new Date(g0.data+"T00:00:00") - new Date(iso()+"T00:00:00"))/864e5);
+      h = '<div class="dh"><div class="kick">Non si è ancora partiti</div>'
+        + '<h2>Mancano '+gg+' giorn'+(gg===1?'o':'i')+'</h2>'
+        + '<p class="cap">Qui sotto il primo giorno. Quello che va chiuso prima di partire sta nella scheda <b>Da fare</b>.</p></div>'
+        + giorno(g0);
     } else if (i === -2){
-      h = '<div class="dayhead"><div class="t">Viaggio finito</div>'
-        + '<div class="m">Bentornato. I giorni restano tutti consultabili nella scheda Giorni.</div></div>';
-    } else {
-      h = giornoHTML(VIAGGIO.giorni[i], true);
-    }
+      h = '<div class="dh"><h2>Viaggio finito</h2>'
+        + '<p class="cap">Bentornato. I giorni restano tutti nella scheda Giorni.</p></div>';
+    } else h = giorno(VIAGGIO.giorni[i]);
     $("#v-oggi").innerHTML = h + foot();
   }
 
-  /* ---------- vista GIORNI ---------- */
-  var giornoScelto = 0;
-  function renderPills(){
-    var p = "", g = VIAGGIO.giorni;
-    for (var i=0;i<g.length;i++){
-      var et = g[i].etichetta.split(" ");
-      p += '<button class="pill'+(i===giornoScelto?" on":"")+'" data-i="'+i+'">'
-         + 'G'+g[i].n+'<span class="d">'+esc(et[1]+" "+et[2].slice(0,3))+'</span></button>';
-    }
-    $("#pills").innerHTML = p;
+  var sel = 0;
+  function pills(){
+    $("#pills").innerHTML = VIAGGIO.giorni.map(function(g,i){
+      var p = g.etichetta.split(" ");
+      return '<button class="pill'+(i===sel?" on":"")+'" data-i="'+i+'">G'+g.n
+           + '<span>'+esc(p[1]+" "+p[2].slice(0,3))+'</span></button>';
+    }).join("");
   }
-  function renderGiorno(){
-    renderPills();
-    $("#giornoBox").innerHTML = giornoHTML(VIAGGIO.giorni[giornoScelto], true) + foot();
-    window.scrollTo(0,0);
-  }
+  function vGiorni(){ pills(); $("#gbox").innerHTML = giorno(VIAGGIO.giorni[sel]) + foot(); window.scrollTo(0,0); }
   $("#pills").addEventListener("click", function(e){
-    var b = e.target.closest(".pill"); if(!b) return;
-    giornoScelto = +b.dataset.i; renderGiorno();
+    var b = e.target.closest(".pill"); if(!b) return; sel = +b.dataset.i; vGiorni();
   });
 
-  /* ---------- vista DA FARE ---------- */
-  function renderDaFare(){
+  function riga(x, cls){
+    var h = '<div class="it'+(cls?" "+cls:"")+'">';
+    if (x.kick) h += '<span class="kick">'+esc(x.kick)+'</span>';
+    h += '<h3>'+esc(x.titolo)+(x.aggiunta?'<span class="tag">aggiunta</span>':'')+'</h3>';
+    if (x.testo) h += '<p>'+esc(x.testo)+'</p>';
+    if (x.tel) h += '<div class="btns"><a class="btn tel" href="tel:'+esc(x.tel)+'">'+esc(tel(x.tel))+'</a></div>';
+    return h+'</div>';
+  }
+
+  function vDaFare(){
     var p = VIAGGIO.primaDiPartire, h = "";
-    h += '<h2 class="sec">&#128308; Le tre cose serie</h2>';
-    p.rosse.forEach(function(x){
-      h += '<div class="item rossa"><div class="h">'+esc(x.titolo)+'</div><div class="b">'+esc(x.testo)+'</div>';
-      if (x.tel) h += '<div class="btns"><a class="btn tel" href="tel:'+esc(x.tel)+'">&#128222; '+esc(telFmt(x.tel))+'</a></div>';
-      h += '</div>';
-    });
-    h += '<h2 class="sec">&#128421; Online, prima di partire</h2>';
-    p.online.forEach(function(x){
-      h += '<div class="item"><div class="h">'+esc(x.titolo)+'</div><div class="b">'+esc(x.testo)+'</div>';
-      if (x.tel) h += '<div class="btns"><a class="btn tel" href="tel:'+esc(x.tel)+'">&#128222; '+esc(telFmt(x.tel))+'</a></div>';
-      h += '</div>';
-    });
-    h += '<h2 class="sec">&#128993; Le piccole rimaste indietro</h2>';
-    p.piccole.forEach(function(x){
-      h += '<div class="item"><div class="h">'+esc(x.titolo)+(x.aggiunta?'<span class="nuovo">AGGIUNTA</span>':'')+'</div>'
-         + '<div class="b">'+esc(x.testo)+'</div>';
-      if (x.tel) h += '<div class="btns"><a class="btn tel" href="tel:'+esc(x.tel)+'">&#128222; '+esc(telFmt(x.tel))+'</a></div>';
-      h += '</div>';
-    });
-    h += '<h2 class="sec">&#128274; Regole ferme</h2>';
-    VIAGGIO.regole.forEach(function(r){
-      h += '<div class="item"><div class="h">'+esc(r.t)+'</div><div class="b">'+esc(r.d)+'</div></div>';
-    });
+    h += '<h4 class="sec">Le tre cose serie</h4>';
+    p.rosse.forEach(function(x){ h += riga(x,"rossa"); });
+    h += '<h4 class="sec">Online, prima di partire</h4>';
+    p.online.forEach(function(x){ h += riga(x); });
+    h += '<h4 class="sec">Le piccole rimaste indietro</h4>';
+    p.piccole.forEach(function(x){ h += riga(x); });
+    h += '<h4 class="sec">Regole ferme</h4>';
+    VIAGGIO.regole.forEach(function(r){ h += riga({titolo:r.t, testo:r.d}); });
     $("#v-dafare").innerHTML = h + foot();
   }
 
-  /* ---------- vista PRENOTAZIONI ---------- */
-  function renderPren(){
+  function vPren(){
     var P = VIAGGIO.prenotazioni;
-    var h = '<div class="avviso"><b>&#128274; '+esc(P.avviso)+'</b></div>';
-    P.voci.forEach(function(x){
-      h += '<div class="item"><span class="kicker">'+esc(x.tipo)+'</span>'
-         + '<div class="h">'+esc(x.t)+'</div><div class="b">'+esc(x.d)+'</div></div>';
-    });
+    var h = '<div class="intro">'+esc(P.avviso)+'</div>';
+    P.voci.forEach(function(x){ h += riga({kick:x.tipo, titolo:x.t, testo:x.d}); });
     $("#v-pren").innerHTML = h + foot();
   }
 
-  /* ---------- vista TELEFONI ---------- */
-  function renderTel(){
+  function vTel(){
     var h = "";
     VIAGGIO.telefoni.forEach(function(gr){
-      h += '<h2 class="sec">'+esc(gr.gruppo)+'</h2>';
-      gr.voci.forEach(function(v){
-        h += '<div class="item"><div class="h">'+esc(v.n)+(v.aggiunta?'<span class="nuovo">AGGIUNTA</span>':'')+'</div>';
-        if (v.nota) h += '<div class="b">'+esc(v.nota)+'</div>';
-        h += '<div class="btns"><a class="btn tel" href="tel:'+esc(v.t)+'">&#128222; '+esc(telFmt(v.t))+'</a></div></div>';
-      });
+      h += '<h4 class="sec">'+esc(gr.gruppo)+'</h4>';
+      gr.voci.forEach(function(v){ h += riga({titolo:v.n, testo:v.nota, tel:v.t, aggiunta:v.aggiunta}); });
     });
     $("#v-tel").innerHTML = h + foot();
   }
 
-  /* ---------- vista SOLDI ---------- */
-  function renderSoldi(){
+  function vSoldi(){
     var S = VIAGGIO.soldi, C = VIAGGIO.cassa;
-    var h = '<div class="avviso" style="background:#1e3a2a;border-color:#2c5540;color:#a9e9c2">'
-          + '<b>'+esc(S.riassunto)+'</b></div>';
+    var h = '<div class="intro verde">'+esc(S.riassunto)+'</div>';
+    h += '<h4 class="sec">Le uscite in contanti</h4>';
     S.voci.forEach(function(v){
-      h += '<div class="item"><div class="money"><div class="q">'+esc(v.q)+'</div>'
-         + '<div><div class="h" style="font-size:15px">'+esc(v.t)+'</div>'
-         + '<div class="b">'+esc(v.d)+'</div></div></div></div>';
+      h += '<div class="it"><span class="q">'+esc(v.q)+'</span>'
+         + '<h3 style="margin-top:4px">'+esc(v.t)+'</h3><p>'+esc(v.d)+'</p></div>';
     });
-    h += '<h2 class="sec">&#127903; Si comprano in cassa</h2>';
-    h += '<div class="box nt" style="margin-top:0">'+esc(C.intro)+'</div>';
-    h += '<table class="cassa">';
+    h += '<h4 class="sec">Si comprano in cassa</h4>';
+    h += '<div class="it"><p style="margin-top:18px">'+esc(C.intro)+'</p></div>';
     C.voci.forEach(function(v){
-      h += '<tr><td class="g">'+esc(v.g)+'</td><td><b>'+esc(v.t)+'</b><br><span style="color:#c3cee0">'
-         + esc(v.d)+'</span></td><td class="q">'+esc(v.q)+'</td></tr>';
+      h += '<div class="it"><span class="kick">'+esc(v.g)+'</span><span class="q">'+esc(v.q)+'</span>'
+         + '<h3 style="margin-top:4px">'+esc(v.t)+'</h3><p>'+esc(v.d)+'</p></div>';
     });
-    h += '</table>';
-    h += '<h2 class="sec">&#128196; Documenti in tasca</h2>';
-    h += '<div class="item"><div class="b">'+esc(S.documenti)+'</div></div>';
+    h += '<h4 class="sec">Documenti in tasca</h4>';
+    h += '<div class="it"><p style="margin-top:18px">'+esc(S.documenti)+'</p></div>';
     $("#v-soldi").innerHTML = h + foot();
   }
 
   function foot(){
-    return '<div class="foot">Polonia 2026 &middot; contenuto dai file del progetto,'
-         + '<br>aggiornato al '+esc(VIAGGIO.aggiornato)+'.<br>I codici di prenotazione stanno nel PDF.</div>';
+    return '<div class="foot">Contenuto dai file del progetto, aggiornato al '
+         + esc(VIAGGIO.aggiornato)+'.<br>I codici di prenotazione stanno nel PDF, non qui.</div>';
   }
 
   /* ---------- navigazione ---------- */
-  var reso = {};
-  var renderer = { oggi:renderOggi, giorni:renderGiorno, dafare:renderDaFare,
-                   pren:renderPren, tel:renderTel, soldi:renderSoldi };
+  var fatto = {}, R = {oggi:vOggi, giorni:vGiorni, dafare:vDaFare, pren:vPren, tel:vTel, soldi:vSoldi};
   function vai(v){
-    if (!reso[v]) { renderer[v](); reso[v] = true; }
+    if (!fatto[v]) { R[v](); fatto[v] = true; }
     document.querySelectorAll(".view").forEach(function(s){ s.classList.remove("on"); });
     $("#v-"+v).classList.add("on");
-    document.querySelectorAll("#nav button").forEach(function(b){
-      b.classList.toggle("on", b.dataset.v === v);
-    });
+    document.querySelectorAll("#nav button").forEach(function(b){ b.classList.toggle("on", b.dataset.v===v); });
     window.scrollTo(0,0);
-    try { localStorage.setItem("pl_vista", v); } catch(e){}
   }
   $("#nav").addEventListener("click", function(e){
     var b = e.target.closest("button"); if(!b) return; vai(b.dataset.v);
   });
 
   /* ---------- avvio ---------- */
-  $("#hTitle").textContent = VIAGGIO.titolo;
-  $("#hSub").textContent  = VIAGGIO.sottotitolo;
-  var i = indiceGiornoCorrente();
-  giornoScelto = (i >= 0) ? i : 0;
+  $("#hT").textContent = VIAGGIO.titolo;
+  $("#hS").textContent = VIAGGIO.sottotitolo;
+  var i = indiceOggi(); sel = (i>=0) ? i : 0;
   vai("oggi");
 
-  /* ---------- stato rete ---------- */
   function rete(){ document.body.classList.toggle("offline", !navigator.onLine); }
-  window.addEventListener("online", rete); window.addEventListener("offline", rete); rete();
+  addEventListener("online", rete); addEventListener("offline", rete); rete();
 
-  /* ---------- service worker ---------- */
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function(){
-      navigator.serviceWorker.register("sw.js").catch(function(){});
-    });
-  }
+  if ("serviceWorker" in navigator)
+    addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
 })();
 </script>
 </body>

@@ -3,7 +3,7 @@
    Una volta installata, l'app si apre e legge tutto SENZA RETE.
    Per pubblicare una modifica: alzare VERSIONE qui sotto. */
 
-var VERSIONE = "polonia-2026-v1";
+var VERSIONE = "polonia-2026-v2";
 
 var FILE = [
   "./",
