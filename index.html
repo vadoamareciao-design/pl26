@@ -49,6 +49,11 @@
   #net{display:none; background:#fff4e5; color:#8a5200; font-size:13px;
        text-align:center; padding:7px 16px; border-bottom:1px solid #f0dcbe}
   body.offline #net{display:block}
+  #upd{display:none; width:100%; border:0; border-bottom:1px solid #b9e0c8;
+       background:#eaf7ef; color:#14603c; font:inherit; font-size:14px; font-weight:600;
+       text-align:center; padding:11px 16px; cursor:pointer}
+  body.aggiornato #upd{display:block}
+  #upd:active{background:#dcf0e4}
 
   main{padding:0 20px 40px; max-width:680px; margin:0 auto}
   .view{display:none} .view.on{display:block}
@@ -148,6 +153,7 @@
   <div class="sub" id="hS">4 &ndash; 11 agosto</div>
 </header>
 <div id="net">Sei offline. L&rsquo;app funziona lo stesso &mdash; solo i percorsi hanno bisogno di rete.</div>
+<button id="upd">C&rsquo;&egrave; una versione nuova &mdash; tocca per aggiornare</button>
 
 <main>
   <section class="view" id="v-oggi"></section>
@@ -346,8 +352,32 @@
   function rete(){ document.body.classList.toggle("offline", !navigator.onLine); }
   addEventListener("online", rete); addEventListener("offline", rete); rete();
 
-  if ("serviceWorker" in navigator)
-    addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+  /* ---------- aggiornamenti ----------
+     L'app si apre sempre dalla copia salvata (istantanea, funziona in aereo)
+     e nello stesso momento va a controllare se ne esiste una piu' recente.
+     Se la trova, compare la barra verde: un tocco e si ricarica. */
+  $("#upd").addEventListener("click", function(){ location.reload(); });
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.addEventListener("message", function(e){
+      if (e.data && e.data.tipo === "aggiornamento") document.body.classList.add("aggiornato");
+    });
+
+    function controlla(){
+      if (!navigator.onLine) return;
+      navigator.serviceWorker.ready.then(function(reg){
+        reg.update().catch(function(){});
+        if (reg.active) reg.active.postMessage("controlla");
+      });
+    }
+
+    addEventListener("load", function(){
+      navigator.serviceWorker.register("sw.js").then(function(){ controlla(); }).catch(function(){});
+    });
+    /* ogni volta che riapri l'icona dalla Home */
+    addEventListener("visibilitychange", function(){ if (!document.hidden) controlla(); });
+    addEventListener("online", controlla);
+  }
 })();
 </script>
 </body>

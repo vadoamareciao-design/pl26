@@ -1,68 +1,114 @@
 /* Service worker della PWA "Polonia 2026".
-   Strategia: CACHE-FIRST su un elenco fisso di file (precache).
-   Una volta installata, l'app si apre e legge tutto SENZA RETE.
-   Per pubblicare una modifica: alzare VERSIONE qui sotto. */
+ *
+ * Obiettivo doppio: l'app si apre SUBITO (anche in aereo) ed e' SEMPRE
+ * AGGIORNATA appena c'e' un filo di rete.
+ *
+ * Strategia "stale-while-revalidate": servo all'istante la copia che ho in
+ * cache, e nello stesso momento chiedo alla rete se ne esiste una nuova.
+ * Se c'e', la salvo e avviso la pagina, che mostra la barretta
+ * "Aggiornamento pronto".
+ *
+ * Conseguenza pratica: NON serve piu' alzare un numero di versione a ogni
+ * modifica dei contenuti. Il nome qui sotto serve solo a dare un nome alla cache.
+ */
 
-var VERSIONE = "polonia-2026-v3";
+var CACHE = "polonia-2026";
 
 var FILE = [
   "./",
   "./index.html",
   "./dati.js",
   "./manifest.webmanifest",
+  "./icon-180.png",
   "./icon-192.png",
   "./icon-512.png",
   "./icon-512-maskable.png",
-  "./icon-180.png",
   "./icon-1024.png"
 ];
 
-/* INSTALL: scarica e mette in cache tutto, subito. */
+/* Solo per questi file vale la pena avvisare l'utente: sono i contenuti. */
+function contaSeCambia(url) {
+  return /\/(index\.html|dati\.js)$/.test(url) || /\/$/.test(url);
+}
+
 self.addEventListener("install", function (e) {
   e.waitUntil(
-    caches.open(VERSIONE).then(function (c) {
-      return c.addAll(FILE);
-    }).then(function () {
-      return self.skipWaiting();
-    })
+    caches.open(CACHE)
+      .then(function (c) { return c.addAll(FILE); })
+      .then(function () { return self.skipWaiting(); })
   );
 });
 
-/* ACTIVATE: butta via le cache delle versioni vecchie. */
 self.addEventListener("activate", function (e) {
   e.waitUntil(
-    caches.keys().then(function (chiavi) {
-      return Promise.all(chiavi.map(function (k) {
-        if (k !== VERSIONE) return caches.delete(k);
-      }));
-    }).then(function () {
-      return self.clients.claim();
-    })
+    caches.keys()
+      .then(function (k) {
+        return Promise.all(k.map(function (n) { if (n !== CACHE) return caches.delete(n); }));
+      })
+      .then(function () { return self.clients.claim(); })
   );
 });
 
-/* FETCH: prima la cache. Se manca, la rete. Se anche la rete manca
-   e si stava aprendo una pagina, si restituisce comunque index.html. */
+function avvisa(msg) {
+  return self.clients.matchAll({ type: "window" }).then(function (cs) {
+    cs.forEach(function (c) { c.postMessage(msg); });
+  });
+}
+
+function diversa(vecchia, nuova) {
+  if (!vecchia) return false;
+  var a = vecchia.headers, b = nuova.headers;
+  return (a.get("etag") || "") !== (b.get("etag") || "") ||
+         (a.get("last-modified") || "") !== (b.get("last-modified") || "");
+}
+
 self.addEventListener("fetch", function (e) {
   var req = e.request;
   if (req.method !== "GET") return;
-
-  var url = new URL(req.url);
-  if (url.origin !== self.location.origin) return; /* Google Maps ecc.: non tocchiamo */
+  if (new URL(req.url).origin !== self.location.origin) return; /* Google Maps: non tocco */
 
   e.respondWith(
-    caches.match(req, { ignoreSearch: true }).then(function (hit) {
-      if (hit) return hit;
-      return fetch(req).then(function (res) {
-        if (res && res.ok && res.type === "basic") {
-          var copia = res.clone();
-          caches.open(VERSIONE).then(function (c) { c.put(req, copia); });
-        }
-        return res;
-      }).catch(function () {
-        if (req.mode === "navigate") return caches.match("./index.html");
-        return new Response("", { status: 504, statusText: "offline" });
+    caches.open(CACHE).then(function (cache) {
+      return cache.match(req, { ignoreSearch: true }).then(function (vecchia) {
+
+        /* "no-cache" salta la cache del browser: altrimenti mi ridarebbe
+           la stessa copia vecchia e non scoprirei mai le novita'. */
+        var fresca = fetch(req, { cache: "no-cache" }).then(function (res) {
+          if (!res || !res.ok || res.type !== "basic") return res;
+          var cambiata = diversa(vecchia, res);
+          cache.put(req, res.clone());
+          if (cambiata && contaSeCambia(req.url)) avvisa({ tipo: "aggiornamento" });
+          return res;
+        }).catch(function () { return null; });
+
+        /* Ho gia' la copia? La do subito: zero attesa, e funziona in aereo. */
+        if (vecchia) return vecchia;
+
+        /* Primo caricamento di quel file: qui la rete serve davvero. */
+        return fresca.then(function (r) {
+          if (r) return r;
+          if (req.mode === "navigate") return cache.match("./index.html");
+          return new Response("", { status: 504, statusText: "offline" });
+        });
       });
     })
   );
+});
+
+/* La pagina chiede un controllo esplicito ogni volta che la riapri. */
+self.addEventListener("message", function (e) {
+  if (e.data !== "controlla") return;
+  caches.open(CACHE).then(function (cache) {
+    FILE.forEach(function (f) {
+      fetch(f, { cache: "no-cache" }).then(function (res) {
+        if (!res || !res.ok) return;
+        cache.match(f, { ignoreSearch: true }).then(function (v) {
+          var cambiata = diversa(v, res);
+          cache.put(f, res.clone());
+          if (cambiata && contaSeCambia(new URL(f, self.location).href))
+            avvisa({ tipo: "aggiornamento" });
+        });
+      }).catch(function () {});
+    });
+  });
 });
