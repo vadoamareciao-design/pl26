@@ -67,20 +67,36 @@
   .dh .meta{color:var(--gr); font-size:15px; margin-top:11px}
   .dh .cap{margin-top:18px; font-size:16px; color:#3a4048; line-height:1.6}
 
-  /* ---------------- meteo del giorno ---------------- */
-  .meteo{margin-top:20px; border:1px solid var(--ln); border-radius:12px; padding:15px 17px 14px}
-  .meteo .top{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
-  .meteo .luogo{font-size:12.5px; font-weight:700; letter-spacing:.9px;
-                text-transform:uppercase; color:var(--gr2)}
-  .meteo .gradi{font-size:25px; font-weight:700; letter-spacing:-.6px; font-variant-numeric:tabular-nums}
-  .meteo .gradi small{font-size:16px; font-weight:600; color:var(--gr2); letter-spacing:0}
-  .meteo .dati{margin-top:5px; font-size:14.5px; color:var(--gr); font-variant-numeric:tabular-nums}
-  .meteo .dati b{color:#33393f; font-weight:600}
-  .meteo .vesti{margin:11px 0 0; font-size:16px; line-height:1.6; color:#33393f}
-  .meteo .fonte{margin-top:11px; padding-top:9px; border-top:1px solid var(--ln);
+  /* ---------------- meteo del giorno ----------------
+     Deve saltare all'occhio: e' la prima cosa che si guarda la mattina.
+     Il numero e' grande davvero, l'icona pure. Il colore del fondo cambia
+     col tempo che fa, ma resta tenue: sotto il sole si deve leggere. */
+  .meteo{margin:22px 0 4px; border:1.5px solid var(--ln); border-radius:16px;
+         padding:20px 20px 17px; background:#fbfcfd}
+  .meteo .luogo{font-size:12.5px; font-weight:700; letter-spacing:1px;
+                text-transform:uppercase; color:var(--gr)}
+  .meteo .riga{display:flex; align-items:center; gap:18px; margin-top:10px}
+  .meteo .gradi{font-size:54px; font-weight:700; letter-spacing:-2.4px; line-height:1;
+                font-variant-numeric:tabular-nums}
+  .meteo .min{font-size:15.5px; font-weight:600; color:var(--gr); margin-top:7px;
+              font-variant-numeric:tabular-nums}
+  .meteo .ic{margin-left:auto; flex:0 0 auto}
+  .meteo .ic svg{width:62px; height:62px; stroke:currentColor; fill:none;
+                 stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; display:block}
+  .meteo .vesti{margin:17px 0 0; font-size:18px; line-height:1.5; font-weight:600;
+                color:var(--tx); letter-spacing:-.2px}
+  .meteo .dati{margin-top:13px; font-size:15px; color:var(--gr);
+               font-variant-numeric:tabular-nums}
+  .meteo .dati b{color:var(--tx); font-weight:650}
+  .meteo .fonte{margin-top:12px; padding-top:10px; border-top:1px solid var(--ln);
                 font-size:12px; color:var(--gr2)}
+  /* il tempo che fa tinge appena il riquadro, senza mai toccare il testo */
+  .meteo.m-sole   {background:#fffcf3; border-color:#f2e4c4} .meteo.m-sole   .ic{color:#c98a00}
+  .meteo.m-nuvole {background:#fafbfc; border-color:#e2e6ea} .meteo.m-nuvole .ic{color:#78808c}
+  .meteo.m-pioggia{background:#f4f8fc; border-color:#cfe0ee} .meteo.m-pioggia .ic{color:#1257a8}
+  .meteo.m-caldo  {background:#fff7f4; border-color:#f3d6c9} .meteo.m-caldo  .ic{color:#c8102e}
   .meteo.vecchio{background:#fffaf2; border-color:#f0dcbe}
-  .meteo .caric{font-size:15px; color:var(--gr2)}
+  .meteo .caric{font-size:15.5px; color:var(--gr); line-height:1.55}
 
   /* ---------------- una tappa ---------------- */
   .tp{padding:26px 0; border-top:1px solid var(--ln)}
@@ -380,16 +396,39 @@
     return t.charAt(0).toUpperCase() + t.slice(1);
   }
 
+  /* icone grandi a tratto, stesso stile del resto dell'app */
+  var METEOIC = {
+    sole:   '<circle cx="12" cy="12" r="4.6"/><path d="M12 1.6v3M12 19.4v3M1.6 12h3M19.4 12h3'
+          + 'M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/>',
+    nuvole: '<path d="M8.5 7.2a4.2 4.2 0 017.9 1.3 3.4 3.4 0 01-.6 6.8H8a4.5 4.5 0 01-.5-9z"/>'
+          + '<path d="M5.2 9.4a3.6 3.6 0 002.3-2.2"/>',
+    pioggia:'<path d="M8 5.2a4.2 4.2 0 017.9 1.3 3.4 3.4 0 01-.6 6.8H7.5a4.5 4.5 0 01-.5-9z"/>'
+          + '<path d="M8.6 17l-1.2 3.6M12.4 17l-1.2 3.6M16.2 17L15 20.6"/>',
+    caldo:  '<circle cx="12" cy="12" r="4.6"/><path d="M12 1.6v3M12 19.4v3M1.6 12h3M19.4 12h3'
+          + 'M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/>'
+  };
+  function cheTempo(max, pioggia){
+    if (pioggia >= 55) return "pioggia";
+    if (max >= 29)     return "caldo";
+    if (pioggia >= 25) return "nuvole";
+    return "sole";
+  }
+
   function disegnaMeteo(el, m, vecchio, quando){
     var pioggia = Math.round(m.pioggia), vento = Math.round(m.vento);
-    el.className = "meteo" + (vecchio ? " vecchio" : "");
+    var t = cheTempo(m.max, pioggia);
+    el.className = "meteo m-" + t + (vecchio ? " vecchio" : "");
     el.innerHTML =
-        '<div class="top"><span class="luogo">'+esc(m.luogo)+'</span>'
-      + '<span class="gradi">'+Math.round(m.max)+'&deg; <small>/ '+Math.round(m.min)+'&deg;</small></span></div>'
-      + '<div class="dati">Pioggia <b>'+pioggia+'%</b> &middot; vento <b>'+vento+' km/h</b></div>'
+        '<div class="luogo">'+esc(m.luogo)+'</div>'
+      + '<div class="riga"><div>'
+      +   '<div class="gradi">'+Math.round(m.max)+'&deg;</div>'
+      +   '<div class="min">minima '+Math.round(m.min)+'&deg;</div></div>'
+      +   '<div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+METEOIC[t]+'</svg></div>'
+      + '</div>'
       + '<p class="vesti">'+esc(comeVestirsi(m.max, m.min, pioggia, vento))+'</p>'
+      + '<div class="dati">Pioggia <b>'+pioggia+'%</b> &middot; vento <b>'+vento+' km/h</b></div>'
       + '<div class="fonte">'+(vecchio
-          ? 'Senza rete: ultimo aggiornamento ' + esc(quando)
+          ? '&#9888; Senza rete: è la previsione scaricata il ' + esc(quando)
           : 'Aeronautica Militare &middot; aggiornato ' + esc(quando))+'</div>';
   }
 
