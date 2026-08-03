@@ -385,11 +385,11 @@ const VIAGGIO = {
           vai: "https://www.google.com/maps/dir/?api=1&destination=Hotel%20Sadova%2C%20Lakowa%2060%2C%2080-769%20Gdansk%2C%20Poland&travelmode=driving", modo: "driving", tipo: "spost" },
         { ora: "~19:30", titolo: "Rientro al Sadova, piscina/spa", dove: "Danzica",
           note: "Giornata di guida lunga, sera scarica.", tipo: "riposo" },
-        { ora: "20:00", fisso: true, aperta: true, titolo: "Cena - True (scritto su WhatsApp, in attesa)",
+        { ora: "20:00", ok: true, fisso: true, aperta: true, titolo: "Cena - True - CONFERMATA",
           dove: "Chmielna 10, Isola dei Granai - 0,9 km dal Sadova, 12 min a piedi (il più vicino di tutti)",
           attenzione: "Mail inviata l'1/8, nessuna risposta al 2/8. Se True salta, la rete di sicurezza è Papieroovka (il ristorante dentro il Sadova) - ma l'hotel ha detto il 27/07 che nei weekend è pieno e NON basta avvisare la reception: va prenotata davvero.",
           tel: "+48727600601",
-          note: "Richiesta mandata su WHATSAPP il 3/8 (la mail dell'1/8 non ha mai avuto risposta): tavolo per 6 domenica alle 20:00, nome Antoci. Se entro sabato non rispondono, telefonare al +48 727 600 601. Piano B a due passi: Papieroovka. 4,6 su 914 recensioni, confermato nella Guida MICHELIN (selezione ufficiale di Danzica: doppia-euro, 'Meats and Grills', non stellato). Domenica 13:00-22:00. Il Galar al tramonto è stato ESCLUSO l'1/8: domenica è già la giornata più piena e sposterebbe l'ora di cena. Papieroovka (piano B): dentro l'hotel, zero spostamenti, domenica 13:00-22:00, cucina regionale e la più grande cider-house della Polonia (~30 sidri), ~18-28 euro a testa, reception +48 58 382 30 30. Altre alternative casual già valutate: Pierogarnia Mandu (ul. Elzbietanska 4/8), Mon Balzac (ul. Chmielna 10).",
+          note: "CONFERMATO dal locale su WhatsApp il 3/8 alle 22:29: «There is a table available and I'm gonna book that table right away». Tavolo per 6, nome Antoci. La mail dell'1/8 non ha mai avuto risposta: ha risposto WhatsApp in mezza giornata. 4,6 su 914 recensioni, confermato nella Guida MICHELIN (selezione ufficiale di Danzica: doppia-euro, 'Meats and Grills', non stellato). Domenica 13:00-22:00. Il Galar al tramonto è stato ESCLUSO l'1/8: domenica è già la giornata più piena e sposterebbe l'ora di cena. Papieroovka (piano B): dentro l'hotel, zero spostamenti, domenica 13:00-22:00, cucina regionale e la più grande cider-house della Polonia (~30 sidri), ~18-28 euro a testa, reception +48 58 382 30 30. Altre alternative casual già valutate: Pierogarnia Mandu (ul. Elzbietanska 4/8), Mon Balzac (ul. Chmielna 10).",
           vai: "https://www.google.com/maps/dir/?api=1&destination=True%20Restaurant%2C%20Chmielna%2010%2C%20Gdansk%2C%20Poland&travelmode=walking", modo: "walking", tipo: "pasto", mail: "https://app.notion.com/p/3b0bdffea7c781faa7e2fe1836fc9aee" }
       ],
       pianoB: "Con pioggia leggera le dune sono PIÙ FACILI. Col temporale: solo Sea Park (al coperto) o giornata-città a Danzica.",
@@ -581,7 +581,7 @@ const VIAGGIO = {
       { n: "Spizarnia Mazury (ven 7/8)", t: "+48451101330", nota: "Silenzio dal 1/8. Altro numero: +48 509 188 057." },
       { n: "w Zatoce (ven 7/8, alternativa)", t: "+48874219000", nota: "È un hotel: la reception risponde sempre. Chiude alle 21:00 il venerdì." },
       { n: "Bistro na Fali (pranzo sab 8/8)", t: "+48534610670", nota: "Silenzio dal 1/8. Aperto da mezzogiorno tutti i giorni." },
-      { n: "True (dom 9/8)", t: "+48727600601", nota: "Silenzio dal 1/8." }
+      { n: "True (dom 9/8) - WhatsApp", t: "+48727600601", nota: "Silenzio dal 1/8." }
     ]},
     { gruppo: "Alternative già valutate", voci: [
       { n: "Gvara (Danzica)", t: "+48795889288", nota: "4,6 su 3.562 recensioni." },
