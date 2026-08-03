@@ -522,6 +522,42 @@ const VIAGGIO = {
     ]
   },
 
+  /* ------------------------------------------------------------- PAROLE */
+  /* Frasario che funziona SENZA RETE: e' il pezzo che serve davvero al
+     ristorante o in cassa. La pronuncia e' scritta come si legge in italiano. */
+  parole: [
+    { g: "Le prime tre", voci: [
+      { pl: "Dzień dobry", it: "Buongiorno", say: "gign DO-bri" },
+      { pl: "Dziękuję", it: "Grazie", say: "gien-KU-ie" },
+      { pl: "Proszę", it: "Per favore / prego", say: "PRO-scie" }
+    ]},
+    { g: "Al ristorante", voci: [
+      { pl: "Stolik dla sześciu osób", it: "Un tavolo per sei", say: "STO-lik dla SCE-sciu O-sub" },
+      { pl: "Poproszę menu", it: "Il menù, per favore", say: "po-PRO-scie MEnu" },
+      { pl: "Czy jest menu po angielsku?", it: "C'è il menù in inglese?", say: "ci iest MEnu po an-GHIEL-sku" },
+      { pl: "Rachunek, proszę", it: "Il conto, per favore", say: "ra-HU-nek PRO-scie" },
+      { pl: "Czy mogę zapłacić kartą?", it: "Posso pagare con la carta?", say: "ci MO-ghe za-PUA-cic KAR-to" },
+      { pl: "Bez cukru", it: "Senza zucchero", say: "bes TSU-kru" },
+      { pl: "Woda niegazowana", it: "Acqua naturale", say: "VO-da nie-ga-zo-VA-na" },
+      { pl: "Smacznego!", it: "Buon appetito!", say: "smacc-NE-go" }
+    ]},
+    { g: "In giro", voci: [
+      { pl: "Gdzie jest toaleta?", it: "Dov'è il bagno?", say: "gdgie iest to-a-LE-ta" },
+      { pl: "Ile to kosztuje?", it: "Quanto costa?", say: "I-le to kosc-TU-ie" },
+      { pl: "Nie mówię po polsku", it: "Non parlo polacco", say: "gne MU-vie po POL-sku" },
+      { pl: "Czy mówi pan/pani po angielsku?", it: "Parla inglese?", say: "ci MU-vi pan/PA-gni po an-GHIEL-sku" },
+      { pl: "Przepraszam", it: "Scusi", say: "pscie-PRA-sciam" },
+      { pl: "Sześć biletów, proszę", it: "Sei biglietti, per favore", say: "scescc bi-LE-tuv PRO-scie" },
+      { pl: "Bilet ulgowy", it: "Biglietto ridotto", say: "BI-let ul-GO-vi" }
+    ]},
+    { g: "Se serve aiuto", voci: [
+      { pl: "Pomocy!", it: "Aiuto!", say: "po-MO-tsi" },
+      { pl: "Potrzebuję lekarza", it: "Ho bisogno di un medico", say: "po-tsce-BU-ie le-KA-gia" },
+      { pl: "Apteka", it: "Farmacia", say: "ap-TE-ka" },
+      { pl: "Zgubiłem się", it: "Mi sono perso", say: "zgu-BI-uem scie" }
+    ]}
+  ],
+
   /* ------------------------------------------------------------------ SOLDI */
   soldi: {
     riassunto: "Stima per il gruppo: 1.500-2.000 zł in contanti. Al bancomat SEMPRE in złoty, MAI in euro.",
