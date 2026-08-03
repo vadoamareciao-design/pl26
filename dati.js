@@ -58,11 +58,10 @@ const VIAGGIO = {
           vai: "https://www.google.com/maps/dir/?api=1&destination=Biblioteka%20Uniwersytecka%20w%20Warszawie%2C%20Dobra%2056%2F66%2C%20Warszawa%2C%20Poland&travelmode=walking", modo: "walking", tipo: "visita",
           storia: { testo: "Il giardino sul tetto della biblioteca universitaria fu inaugurato nel 2002 e copre oltre un ettaro: e' uno dei giardini pensili piu' grandi d'Europa. Si cammina sopra le sale di lettura, con la citta' e la Vistola sotto.",
                     url: "https://poloniadavivere.it/giardini-biblioteca-universitaria-varsavia", fonte: "Polonia da Vivere" } },
-        { ora: "20:30", fisso: true, titolo: "Cena - Podwale 25 (su MojStolik risulta 'Piwna Kompania')",
+        { ora: "20:30", fisso: true, ok: true, titolo: "Cena - Podwale 25 - CONFERMATA (su MojStolik risulta 'Piwna Kompania')",
           dove: "Podwale 25, Varsavia - 6 persone",
-          attenzione: "IL TAVOLO POTREBBE NON ESISTERE: prenotato su mojstolik.pl l'1/8 ma in Gmail non è mai arrivata né conferma né ricevuta (ricontrollato il 2/8). Verificare l'SMS sul telefono, altrimenti telefonare.",
           tel: "+48226356314",
-          note: "4,9 su 28.006 recensioni. Il locale dichiara una sala da 50 persone. Aperto 11:00-24:00: nessuna corsa la sera dell'arrivo. Sostituisce Stolica (decisione dell'1/8).",
+          note: "CONFERMATO via SMS da mojstolik.pl: tavolo per 6 il 4/8 alle 20:30, tenuto 4 ore. Il codice sta in Notion, non qui. 4,9 su 28.006 recensioni. Il locale dichiara una sala da 50 persone. Aperto 11:00-24:00: nessuna corsa la sera dell'arrivo. Sostituisce Stolica (decisione dell'1/8).",
           vai: "https://www.google.com/maps/dir/?api=1&destination=Podwale%2025%2C%20Warszawa%2C%20Poland&travelmode=walking", modo: "walking", tipo: "pasto", mail: "https://app.notion.com/p/3b0bdffea7c781faa7e2fe1836fc9aee" },
         { ora: "~21:30", titolo: "Due passi dopo cena - Gnojna Góra (facoltativo)",
           dove: "In fondo a ul. Celna, dentro la Città Vecchia - ~5 min a piedi",
@@ -511,7 +510,6 @@ const VIAGGIO = {
       { id: "checkin-ryanair", titolo: "Check-in Ryanair - volo di andata", testo: "Si apre lunedì 3/8 alle 9:05 e chiude 2 ore prima del volo. Carte d'imbarco SOLO digitali: app installata e accesso già fatto." },
       { id: "checkin-wizz", titolo: "Check-in Wizz Air - volo di ritorno", testo: "Da provare subito: i posti 27A-27D risultano già assegnati, quindi la finestra dovrebbe essere aperta. Al banco costa 50 euro a persona. Vale per 4 persone: GLI ZII DEVONO FARE IL LORO." },
       { id: "checkin-ibis-zii", titolo: "Check-in online ibis DEGLI ZII", testo: "Quello di Raffaele è FATTO il 2/8 e vale per 2 camere / 4 adulti. Gli zii hanno una prenotazione separata e la finestra chiude alle 07:00 del 4/8, cioè mentre siete già in aeroporto. Da fare entro lunedì 3/8 sera. Verificare anche che sul codice di Raffaele risultino registrate ENTRAMBE le camere." },
-      { id: "podwale-tavolo", titolo: "Podwale 25 - il tavolo di martedì", testo: "Prenotato su mojstolik.pl l'1/8, ma in Gmail non è arrivata né conferma né ricevuta. Verificare l'SMS sul telefono, altrimenti telefonare.", tel: "+48226356314" }
     ],
     piccole: [
       { id: "colazione-roberts", titolo: "Colazione al Robert's Port sabato", testo: "Si parte alle 7:00 con 239 km davanti: se la colazione apre alle 8 serve un cestino. Telefonata mai fatta.", tel: "+48874298400" },
