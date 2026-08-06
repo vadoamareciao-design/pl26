@@ -162,6 +162,12 @@
   .btn svg{width:19px; height:19px; stroke:currentColor; fill:none;
            stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto}
   .btn.vai{border-color:var(--tx)}
+  /* il ripiego: stesso tasto, ma piccolo e grigio, cosi' si vede che e' il secondo */
+  .btn.mini{font-size:14.5px; font-weight:500; padding:9px 14px; min-height:38px;
+            border-color:var(--ln); color:var(--gr)}
+  .btn.mini svg{width:16px; height:16px}
+  /* mandare a capo dentro un flex: il ripiego non sta mai in fila col tasto grande */
+  .brk{flex-basis:100%; height:0; margin:0; padding:0}
 
   /* ---------------- la storia del posto ---------------- */
   details.st{margin-top:14px}
@@ -324,7 +330,8 @@
     tel:   '<path d="M6.5 3h3l1.5 4-2 1.5a13 13 0 006.5 6.5L17 13l4 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 013.5 5.2 2 2 0 015.5 3z"/>',
     parole:'<path d="M4 5h9M8.5 5v2.2c0 3.6-1.9 6.8-4.5 8.3M6.2 10.4c0 2.4 2.2 4.6 5 5.4"/><path d="M13 20l4-10 4 10M14.6 16.6h4.8"/>',
     soldi: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.7 0-2.8.8-2.8 2s1.1 1.9 2.8 2 2.8.8 2.8 2-1.1 2-2.8 2c-1.2 0-2.3-.5-2.8-1.4"/>',
-    storia:'<path d="M4 5.5A2.5 2.5 0 016.5 3H11v17H6.5A2.5 2.5 0 004 22.5zM20 5.5A2.5 2.5 0 0017.5 3H13v17h4.5a2.5 2.5 0 012.5 2.5z"/>'
+    storia:'<path d="M4 5.5A2.5 2.5 0 016.5 3H11v17H6.5A2.5 2.5 0 004 22.5zM20 5.5A2.5 2.5 0 0017.5 3H13v17h4.5a2.5 2.5 0 012.5 2.5z"/>',
+    mappa: '<path d="M12 21.5s6.8-5.9 6.8-11.1a6.8 6.8 0 10-13.6 0c0 5.2 6.8 11.1 6.8 11.1z"/><circle cx="12" cy="10.2" r="2.5"/>'
   };
 
   /* Come ci si va: il tasto lo dice a parole, cosi' non si parte in auto per sbaglio */
@@ -367,8 +374,20 @@
     if (x.vai || numero || (x.mail && !FAM)){
       h += '<div class="btns">';
       /* Un solo tasto per andarci, e dice COME: il percorso parte da dove sei
-         in questo momento (nessun punto di partenza fisso) e col mezzo giusto. */
-      if (x.vai) h += '<a class="btn vai" href="'+esc(x.vai)+'" target="_blank" rel="noopener">'
+         in questo momento (nessun punto di partenza fisso) e col mezzo giusto.
+         Eccezione, i tratti IN AUTO: li' il tasto grande apre WAZE, che in Polonia
+         segnala autovelox, controlli e code meglio di chiunque; Google Maps resta
+         sotto, piccolo, come ripiego se Waze fa i capricci. A piedi e coi mezzi
+         Waze non c'e' proprio: fa solo l'auto. */
+      if (x.vai && x.waze){
+        h += '<a class="btn vai" href="'+esc(x.waze)+'" target="_blank" rel="noopener">'
+           + '<svg viewBox="0 0 24 24" aria-hidden="true">'+MODI.driving.ic+'</svg>'
+           + 'In auto &mdash; apri Waze</a><i class="brk"></i>'
+           + '<a class="btn mini" href="'+esc(x.vai)+'" target="_blank" rel="noopener">'
+           + '<svg viewBox="0 0 24 24" aria-hidden="true">'+ICONE.mappa+'</svg>'
+           + 'Anche su Google Maps</a>';
+      }
+      else if (x.vai) h += '<a class="btn vai" href="'+esc(x.vai)+'" target="_blank" rel="noopener">'
                     + '<svg viewBox="0 0 24 24" aria-hidden="true">'+MODI[x.modo].ic+'</svg>'
                     + MODI[x.modo].et + '</a>';
       if (numero)  h += '<a class="btn tel" href="tel:'+esc(numero)+'">'+esc(tel(numero))+'</a>';
