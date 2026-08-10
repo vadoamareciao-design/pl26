@@ -8,7 +8,7 @@
 const VIAGGIO = {
   titolo: "Polonia 2026",
   sottotitolo: "4 - 11 agosto - 6 persone - 2 auto",
-  aggiornato: "2 agosto 2026",
+  aggiornato: "10 agosto 2026 (sera) - ultimo giorno rifatto + scheda Etna",
 
   giorni: [
     /* ---------------------------------------------------------------- G1 */
@@ -456,41 +456,59 @@ const VIAGGIO = {
       meteo: { luogo: "Danzica", lat: 54.35, lon: 18.65 },
       data: "2026-08-11",
       etichetta: "Martedì 11 agosto",
-      titolo: "Ultima mattina > riconsegna auto > volo di sera",
+      titolo: "Museo della II Guerra Mondiale > riconsegna auto > volo di sera",
       base: "volo",
-      sveglia: "~8:30 (lenta)",
-      carico: "leggero",
-      cappello: "Questa giornata presuppone la riconsegna spostata alle 16:00. Se non viene spostata vale il RAMO B in fondo, con orari diversi.",
+      sveglia: "~8:15",
+      carico: "pieno (le valigie stanno con voi tutto il giorno)",
+      cappello: "Rifatta la sera del 10/8. La riconsegna RESTA alle 14:30 (deciso: niente telefonate a Europcar). Mattina al Museo della II Guerra Mondiale, che oggi è gratuito - con tutto quello che il gratis comporta. Le valigie stanno con voi tutto il giorno: a Danzica NON esiste deposito bagagli né in aeroporto né altrove sul percorso.",
       tappe: [
-        { ora: "~8:30", titolo: "Sveglia, colazione con calma", dove: "Sadova - ~1h", tipo: "riposo" },
-        { ora: "~9:45", titolo: "Passeggiata d'addio sulla Motlawa e al Dlugi Targ",
-          dove: "Centro storico - ~2h30, 13 min a piedi",
-          note: "Ultima caccia all'ambra al Jarmark. Oggi niente museo grosso: la Torre del Municipio e l'ECS sono CHIUSI IL MARTEDI. Resta la Basilica di Santa Maria se si vuole un interno. Alternativa più riposante: mattinata spa al Sadova (piscina + sauna), con le valigie in camera fino al check-out.",
-          vai: "https://www.google.com/maps/dir/?api=1&destination=Dlugi%20Targ%2C%20Gdansk%2C%20Poland&travelmode=walking", modo: "walking",
-          storia: { testo: "L'ambra è resina di conifere fossilizzata da decine di milioni di anni, che il Baltico continua a restituire sulle sue spiagge. Danzica ne è la capitale da secoli: la «via dell'ambra» portava questa pietra fino a Roma.",
-                    url: "https://www.polonia.travel/it/lambra-loro-del-baltico", fonte: "Polonia.travel (ente del turismo)" }, tipo: "visita" },
-        { ora: "~12:15", titolo: "Pranzo leggero", dove: "Centro Danzica - ~75 min",
-          note: "Non appesantirsi prima del volo.", tipo: "pasto" },
-        { ora: "~13:45", titolo: "Rientro, check-out, carico bagagli", dove: "Sadova - ~1h",
-          attenzione: "Il check-out è alle 11:00 e il volo alle 19:15: tutta l'ultima giornata è costruita su un DEPOSITO BAGAGLI MAI CONFERMATO. Va chiesto (+48 58 382 30 30).",
-          note: "Controllare di non lasciare nulla. Tassa di soggiorno 41,52 zł da saldare.",
-          vai: "https://www.google.com/maps/dir/?api=1&destination=Hotel%20Sadova%2C%20Lakowa%2060%2C%2080-769%20Gdansk%2C%20Poland&travelmode=walking", modo: "walking", tipo: "riposo" },
-        { ora: "~15:15", titolo: "Danzica > aeroporto GDN",
-          dove: "18 km in auto - 25 min (fino a 36 col traffico peggiore)",
-          vai: "https://www.google.com/maps/dir/?api=1&destination=Gdansk%20Lech%20Walesa%20Airport%2C%20Slowackiego%20210%2C%2080-298%20Gdansk%2C%20Poland&travelmode=driving", waze: "https://waze.com/ul?ll=54.382550,18.466302&navigate=yes", modo: "driving", tipo: "spost" },
-        { ora: "~16:00", titolo: "Riconsegna delle 2 auto",
+        { ora: "~8:15", titolo: "Sveglia, colazione veloce", dove: "Sadova - ~45 min",
+          note: "Oggi non si dorme: il museo è gratuito e i biglietti si prendono SOLO in cassa il giorno stesso. Chi arriva tardi trova la fila, non il biglietto.", tipo: "riposo" },
+        { ora: "~9:00", fisso: true, titolo: "Check-out e carico valigie nelle due auto",
+          dove: "Sadova - ~15 min", tel: "+48583823030",
+          attenzione: "Le valigie viaggiano con voi TUTTO il giorno. Niente deposito in hotel, niente armadietti in aeroporto: a GDN non esistono (verificato sull'elenco servizi ufficiale dello scalo).",
+          note: "Il check-out formale è alle 11:00: uscire alle 9 è in anticipo, non un problema. Tassa di soggiorno 41,52 zł da saldare. Controllare cassaforte, bagno, prese e sotto i letti.", tipo: "riposo" },
+        { ora: "~9:15", titolo: "Sadova > parcheggio sotterraneo del Museo",
+          dove: "3,8 km in auto - 14 min (fino a 20 col traffico peggiore)",
+          attenzione: "Ingresso del parcheggio da ul. WALOWA, non dal piazzale del museo. Altezza massima 1,90 m. Biglietto del parcheggio perso = 200 zł: uno per auto, in tasca a chi guida.",
+          note: "142 posti su due livelli, apre alle 9:00. È chiuso e sorvegliato: è il posto migliore dove lasciare sei trolley per tre ore. Si paga alla macchinetta prima di uscire, SOLO CON CARTA: il martedì 30 minuti gratis, poi 10 zł per ogni ora iniziata (circa 40 zł a auto).",
+          vai: "https://www.google.com/maps/dir/?api=1&destination=Muzeum%20II%20Wojny%20Swiatowej%2C%20plac%20Wladyslawa%20Bartoszewskiego%201%2C%2080-862%20Gdansk%2C%20Poland&travelmode=driving", waze: "https://waze.com/ul?ll=54.355866,18.659868&navigate=yes", modo: "driving", tipo: "spost" },
+        { ora: "~9:35", fisso: true, titolo: "IN FILA ALLA CASSA - è il passaggio che decide la giornata",
+          dove: "Museo della II Guerra Mondiale, plac Bartoszewskiego 1",
+          tel: "+48587600960",
+          attenzione: "Martedì l'ingresso è GRATUITO ma i biglietti si ritirano SOLO in cassa, il giorno stesso: il museo scrive nero su bianco che non accetta prenotazioni anticipate. Tetto di 2.500 visitatori. Casse aperte 9:30-14:30, museo 10:00-16:00.",
+          note: "Qui si decide, non dopo: se la fila è lunga si molla e in 20 minuti si è a Westerplatte (RAMO B in fondo). Aspettare di vedere come va è il modo per perdere entrambe le cose.", tipo: "fisso" },
+        { ora: "10:00", titolo: "Mostra principale", dove: "Museo - 3h10",
+          note: "Il museo stesso dichiara TRE ORE come tempo minimo: il piano ve ne dà 3h10, non c'è margine per partire tardi. Audioguida 12 zł e c'è in ITALIANO - su una mostra di questa densità vale i soldi. È tutto sottoterra, fa fresco: bagno prima di scendere.",
+          vai: "https://www.google.com/maps/dir/?api=1&destination=Muzeum%20II%20Wojny%20Swiatowej%2C%20plac%20Wladyslawa%20Bartoszewskiego%201%2C%2080-862%20Gdansk%2C%20Poland&travelmode=walking", modo: "walking", tipo: "visita" },
+        { ora: "13:10", fisso: true, titolo: "USCITA OBBLIGATA - recupero auto e pagamento parcheggio",
+          dove: "Parcheggio del museo - ~15 min",
+          attenzione: "Non è un orario indicativo. Da qui all'Europcar sono 31 minuti normali ma 49 col traffico peggiore: uscendo alle 13:10 si arriva alle 14:15 anche nello scenario brutto. Oltre 30 minuti di ritardo sulla riconsegna, Europcar addebita un giorno intero a tariffa pubblica.", tipo: "fisso" },
+        { ora: "~13:25", titolo: "Museo > Europcar aeroporto GDN",
+          dove: "18,8 km in auto - 31 min (fino a 49 col traffico peggiore)",
+          note: "Controllare sul contratto la politica carburante: se è pieno-pieno serve un distributore lungo la Slowackiego prima dell'aeroporto. Le due auto viaggiano in colonna: chi arriva primo si mette in fila all'ufficio.",
+          vai: "https://www.google.com/maps/dir/?api=1&destination=Juliusza%20Slowackiego%20210A%2C%2080-298%20Gdansk%2C%20Poland&travelmode=driving", waze: "https://waze.com/ul?ll=54.382649,18.466261&navigate=yes", modo: "driving", tipo: "spost" },
+        { ora: "14:30", fisso: true, titolo: "Riconsegna delle 2 auto",
           dove: "GDN, parcheggio 'P2 rent a car', Slowackiego 210A - ~30 min",
           tel: "+48665301685",
-          note: "Ufficio presidiato 9:00-23:30: c'è l'addetto, ispezione sul posto, niente key-drop al buio. Poi 5-10 minuti a piedi fino al terminal (aeroporto compatto).",
+          note: "Ufficio presidiato 9:00-23:30: c'è l'addetto, ispezione sul posto, niente key-drop al buio. Farsi confermare lo sblocco del deposito di 300 euro sulla carta di Carlo. Poi 3 minuti a piedi fino al Terminal 2 (misurati).",
           vai: "https://www.google.com/maps/dir/?api=1&destination=Juliusza%20Slowackiego%20210A%2C%2080-298%20Gdansk%2C%20Poland&travelmode=driving", waze: "https://waze.com/ul?ll=54.382649,18.466261&navigate=yes", modo: "driving", tipo: "spost", mail: "https://app.notion.com/p/3b0bdffea7c781faa7e2fe1836fc9aee" },
-        { ora: "~17:00", titolo: "Ingresso in aeroporto, controlli di sicurezza", dove: "GDN Terminal 2",
-          note: "Volo Schengen (nessun controllo passaporti) + check-in online già fatto + zero bagagli in stiva: si va dritti alla security, niente banco. In agosto le code si allungano: due ore prima è la misura giusta.", tipo: "fisso" },
+        { ora: "~15:15", titolo: "Dentro il terminal e subito ai controlli",
+          dove: "GDN Terminal 2, area Schengen",
+          note: "Volo Schengen (nessun controllo passaporti) + check-in online già fatto + zero bagagli in stiva: si va dritti alla security, niente banco. Si passa presto proprio perché i trolley restano addosso: non c'è nessun posto dove lasciarli.", tipo: "spost" },
+        { ora: "~15:45", titolo: "Riposo al Salon Executive",
+          dove: "Area Schengen dopo i controlli - 150 zł a persona",
+          tel: "+48583481199",
+          note: "Aperto 5:00-21:00. Cibo e bevande inclusi, poltrone vere, bagni, wifi: è la scelta fatta per le due ore morte. Per sei persone circa 900 zł. Si compra online sul sito dell'aeroporto o direttamente all'ingresso della lounge.",
+          attenzione: "Verificare all'ingresso se c'è un limite di permanenza: alcune fonti parlano di 3 ore. In quel caso si entra alle 15:50 e si esce all'imbarco.", tipo: "riposo" },
+        { ora: "~18:45", titolo: "Imbarco", dove: "Gate sui monitor", tipo: "fisso" },
         { ora: "19:15", fisso: true, titolo: "Volo Wizz Air W6 1685 - Danzica > Catania",
           dove: "3h05 di volo, atterra alle 22:20",
+          attenzione: "ETNA. Catania ieri ha chiuso agli arrivi per la TERZA volta in cinque giorni e viaggia a 5 atterraggi l'ora fino alle 6:00 di stamattina. Il volo può ritardare, saltare o essere dirottato su Palermo. Cosa fare in ciascuno dei tre casi: sezione REGOLE, voce ETNA.",
           note: "SOLO BAGAGLIO A MANO: 1 trolley 55x40x23 + 1 borsina 40x30x20 a testa, zero stiva. Regole diverse da Ryanair dell'andata.", tipo: "fisso", mail: "https://app.notion.com/p/3b0bdffea7c781faa7e2fe1836fc9aee" }
       ],
-      pianoB: "RAMO B - se la riconsegna resta alle 14:30: check-out entro le 12:30, pranzo veloce o rimandato all'aeroporto, partenza dal Sadova alle 13:45 (13:35 col traffico peggiore), riconsegna 14:30, poi ~4 ore in aeroporto. Oltre 30 minuti di ritardo Europcar addebita un giorno intero a tariffa pubblica.",
-      valvola: "La modifica dell'orario di riconsegna è gratuita e resta dentro le 24h, ma può far RI-QUOTARE la tariffa: leggere l'importo prima di confermare."
+      pianoB: "RAMO B - WESTERPLATTE, si sceglie alle 9:35 guardando la fila. Dal museo sono 10,7 km, 19 minuti (26 col traffico peggiore). All'aperto, gratuito, nessuna coda, nessun tetto di visitatori: monumento ai Difensori della Costa, rovine delle caserme, Wartownia nr 1, cimitero. Ci siete già stati ieri col galeone, ma con 45 minuti scarsi a terra: stavolta si vede con calma e senza corsa al traghetto di ritorno. Si arriva alle 10:15, si riparte alle 13:00, all'Europcar per le 13:45 (44 minuti nel caso peggiore, la strada gira intorno al porto). Pranzo lungo la strada o in aeroporto. ATTENZIONE: a Westerplatte si parcheggia in SUPERFICIE, quindi niente valigie in vista - nel bagagliaio e coperte, prima di arrivare.",
+      valvola: "Se al museo si entra tardi (dopo le 10:30) la mostra non ci sta in 3 ore: meglio vedere solo la prima metà con calma che correre. L'uscita alle 13:10 non si negozia, è l'unica cosa fissa della giornata insieme al volo."
     }
   ],
 
@@ -499,9 +517,8 @@ const VIAGGIO = {
     rosse: [
       { id: "carta-carlo", titolo: "La carta di credito di Carlo per l'auto",
         testo: "È il rosso più caro: senza, il 6/8 l'auto non si ritira e saltano i giorni dal 6 all'11. Al ritiro servono, TUTTI intestati a Carlo: patente + carta d'identità o passaporto (la patente da sola non basta) + la STESSA carta di credito con cui è stata pagata la prenotazione, su cui bloccano 300 euro di deposito. Aperto dal 26 luglio e mai verificato." },
-      { id: "riconsegna-1600", titolo: "La riconsegna dell'11/8 è ancora alle 14:30",
-        testo: "Lo spostamento alle 16:00 è deciso dall'1/08 ma NON eseguito. Senza: check-out entro le 12:30, partenza 13:45 e 4h45 di attesa in aeroporto. Si fa da 'Manage my booking' oppure per telefono. Gratuito, resta dentro le 24h, ma verificare che non ri-quotino la tariffa prima di confermare.",
-        tel: "+48665301685" },
+      { id: "etna-volo-ritorno", titolo: "ETNA - controllare il volo di ritorno prima di uscire dall'hotel",
+        testo: "Catania ha chiuso agli arrivi tre volte in cinque giorni e ieri sera viaggiava a 5 atterraggi l'ora. PRIMA di lasciare il Sadova: aprire l'app Wizz Air (sezione del volo W6 1685) e aeroporto.catania.it. Se il volo è già toccato, la giornata cambia e va rifatta - non si scopre alle 18:00 al gate. Cosa fare nei tre scenari: sezione REGOLE, voce ETNA." },
       { id: "novotel-dove", titolo: "Al Novotel non si sa dove presentarsi il 6/8",
         testo: "Il ritiro alle 9:00 è a un 'MPOINT' dentro l'hotel e non è pubblicato se sia alla reception o al garage. Con due taxi, sei persone e le valigie, cercarlo sul momento costa tempo. È la STESSA telefonata del punto qui sopra.",
         tel: "+48665301600" }
@@ -514,7 +531,7 @@ const VIAGGIO = {
     piccole: [
       { id: "colazione-roberts", titolo: "Colazione al Robert's Port sabato", testo: "Si parte alle 7:00 con 239 km davanti: se la colazione apre alle 8 serve un cestino. Telefonata mai fatta.", tel: "+48874298400" },
       { id: "parcheggio-sadova", titolo: "Parcheggio al Sadova", testo: "70 zł al giorno per auto, non prenotabile: 2 auto x 3 giorni = ~420 zł. Mai chiesto se c'è posto durante il Jarmark né qual è il ripiego.", tel: "+48583823030" },
-      { id: "deposito-sadova", titolo: "Deposito bagagli al Sadova l'11/8", testo: "Check-out alle 11:00, volo alle 19:15: l'ultima giornata è costruita su un deposito mai confermato.", tel: "+48583823030" },
+      { id: "salon-executive", titolo: "Salon Executive di GDN per sei", testo: "Scelta del 10/8 per le due ore morte del pomeriggio: 150 zł a persona, circa 900 zł in sei. Si compra online sul sito dell'aeroporto (sezione passeggeri) o all'ingresso della lounge. Comprarlo online stasera evita di trovarlo pieno e di litigare con la carta al banco. Aperto 5:00-21:00, è DOPO i controlli.", tel: "+48583481199" },
       { id: "letti-sadova", titolo: "Letti al Sadova", testo: "È un monolocale per 4, non tre camere: Raffaele ed Emanuele condividono un matrimoniale. Verificare al check-in." },
       { id: "tel-zafishowani", titolo: "Telefono su Zafishowani", testo: "Salvato senza il +39: se il locale chiama da un numero polacco, quel numero non esiste. Si corregge dal link di riepilogo della prenotazione." },
       { id: "kayak-conferma", titolo: "Telefonare il kayak la sera prima", testo: "Giovedì sera va confermato l'appuntamento di venerdì mattina.", tel: "+48600029035" },
@@ -600,7 +617,11 @@ const VIAGGIO = {
     ]},
     { gruppo: "Auto", voci: [
       { n: "Europcar MPOINT Novotel (Varsavia)", t: "+48665301600", nota: "Ritiro del 6/8: chiedere DOVE ci si presenta." },
-      { n: "Europcar aeroporto GDN", t: "+48665301685", nota: "Riconsegna dell'11/8: spostare alle 16:00." }
+      { n: "Europcar aeroporto GDN", t: "+48665301685", nota: "Riconsegna dell'11/8 alle 14:30, CONFERMATA così: non si sposta più. Ufficio presidiato 9:00-23:30." }
+    ]},
+    { gruppo: "Ultimo giorno (11/8)", voci: [
+      { n: "Museo della II Guerra Mondiale", t: "+48587600960", nota: "Martedì: casse 9:30-14:30, museo 10:00-16:00, ingresso gratuito ma biglietti solo in cassa.", aggiunta: true },
+      { n: "Salon Executive aeroporto GDN", t: "+48583481199", nota: "La lounge dove riposate il pomeriggio. 150 zł a persona, 5:00-21:00, dopo i controlli.", aggiunta: true }
     ]},
     { gruppo: "Attività", voci: [
       { n: "Kayak Sakowscy / Wan Plac", t: "+48600029035", nota: "Venerdì mattina. Un dipendente parla italiano." },
@@ -635,7 +656,7 @@ const VIAGGIO = {
       { tipo: "Volo ritorno", t: "Wizz Air W6 1685", d: "Mar 11/8, Danzica 19:15 > Catania 22:20. Posti 27A-27D. SOLO bagaglio a mano: 1 trolley 55x40x23 + 1 borsina 40x30x20 a testa." },
       { tipo: "Transfer", t: "Welcome Pickups, 75 euro", d: "Mar 4/8 da Modlin all'ibis. Minivan da 8 posti (non da 4). L'autista monitora il volo. Cercare l'hotel per indirizzo Grzybowska 43, mai per nome." },
       { tipo: "Hotel 1", t: "ibis Styles Warszawa City", d: "Grzybowska 43, Varsavia. 4-6/8, 2 camere per 4 adulti. Camera dalle 15:00, rilascio entro le 11:00. Zero da saldare: prepagato, colazione e WiFi inclusi. Tariffa NON rimborsabile. Check-in online fatto il 2/8." },
-      { tipo: "Auto", t: "Europcar - Renault Clio", d: "Ritiro giovedì 6/8 ore 9:00 all'MPOINT del Novotel Centrum, Marszalkowska 94/98. Prepagata. Secondo guidatore e Premium Protection inclusi. Deposito di 300 euro bloccato sulla carta. Riconsegna martedì 11/8 all'aeroporto GDN, Slowackiego 210A - DA SPOSTARE alle 16:00." },
+      { tipo: "Auto", t: "Europcar - Renault Clio", d: "Ritiro giovedì 6/8 ore 9:00 all'MPOINT del Novotel Centrum, Marszalkowska 94/98. Prepagata. Secondo guidatore e Premium Protection inclusi. Deposito di 300 euro bloccato sulla carta. Riconsegna martedì 11/8 ore 14:30 all'aeroporto GDN, Slowackiego 210A, parcheggio 'P2 rent a car' - orario CONFERMATO il 10/8, lo spostamento alle 16:00 è stato scartato." },
       { tipo: "Hotel 2", t: "Hotel Robert's Port", d: "Stare Sady 4, Mikolajki. 6-8/8, Domek Zeglarza, già pagato, intestato a Carlo. Lake resort & spa: piscina coperta, jacuzzi, sauna, hammam, spiaggia sul lago inclusi. Ristorante aperto 12:00-22:00. Parcheggio in superficie sul posto." },
       { tipo: "Hotel 3", t: "Hotel Sadova", d: "Lakowa 60, Danzica. 8-11/8, già pagato, non rimborsabile, intestato a Raffaele. È un MONOLOCALE PER 4. Colazione esclusa (85 zł a persona). Tassa di soggiorno 41,52 zł in loco. Parcheggio 70 zł al giorno per auto, non prenotabile." },
       { tipo: "Cene confermate", t: "Beef & Pepper, Kubicki, Zafishowani", d: "Mer 5/8 ore 20:00 sala INSIDE - Sab 8/8 ore 19:30 - Lun 10/8 ore 20:00. Tutte per 6 persone." },
@@ -646,6 +667,8 @@ const VIAGGIO = {
 
   /* -------------------------------------------------------------- REGOLE */
   regole: [
+    { t: "ETNA - i tre scenari del ritorno", d: "SITUAZIONE (10/8 sera): l'Etna erutta dal cratere Voragine con cenere verso Sud-Sud-Ovest. Catania ha sospeso gli arrivi tre volte in cinque giorni; ieri ha riaperto alle 16:15 ma con un tetto di 5 atterraggi l'ora fino alle 6:00 di oggi, per chiusura del settore di volo B2. L'aeroporto di dirottamento è PALERMO; in questi giorni sono stati attivati bus e treni straordinari da Palermo, Trapani e Comiso verso Catania. -- SCENARIO 1, il volo salta o slitta mentre siete ancora a Danzica: l'eruzione è 'circostanza eccezionale' secondo il regolamento europeo 261/2004, quindi NON spetta la compensazione in denaro (i 250-400 euro), MA restano interamente dovute la RIPROTEZIONE sul primo volo utile e l'ASSISTENZA (pasti, e se si dorme lì, hotel e trasporti). Si chiede alla compagnia prima di muoversi da soli; se la compagnia non provvede, si provvede e si chiede il rimborso dopo, con TUTTE le ricevute. -- SCENARIO 2, il volo parte ma atterra a Palermo: la compagnia è tenuta a garantire, o a rimborsare per intero, il trasporto fino a Catania. Non allontanarsi dagli arrivi prima di aver capito dove si prende il bus: sono circa 200 km, 2 ore e mezza-3 di strada. Se non organizza nessuno, ci si muove da soli e si conserva ogni scontrino. -- SCENARIO 3, si atterra a Catania ma in ritardo: l'unico problema è chi viene a prendervi. Si avvisa in tempo reale, non all'atterraggio." },
+    { t: "ETNA - cosa preparare stasera", d: "Carte d'imbarco anche in SCREENSHOT, non solo dentro l'app: se il volo cambia, l'app si affolla e la rete pure. Powerbank carico e in bagaglio a mano (in stiva non si può, e comunque stiva non ne avete). Un po' di CONTANTI in euro per un bus o un taxi in Sicilia, che a mezzanotte con una carta straniera si perde tempo. Avvisare adesso chi vi viene a prendere a Catania che l'orario è incerto. E non comprare all'ultimo cose che rendono i trolley ingestibili: se finite a Palermo, quel bagaglio ve lo portate per altre tre ore." },
     { t: "Il cuscinetto", d: "Tra due cose a orario si conta: uscire dall'attività precedente + raggiungere il mezzo + spostamento NEL CASO PEGGIORE + parcheggio e ultimo tratto a piedi. POI il margine: minimo 30 minuti, 45 se in mezzo c'è una barca, un volo o un treno. Mai zero. Se non ci sta, si sposta l'orario, non si stringe il margine." },
     { t: "Manda solo Raffaele", d: "Carlo e Giovanna non inviano più nulla: nessun rischio di doppio tavolo." },
     { t: "Prima di dire che un fornitore non risponde", d: "Controllare (a) che la mail sia stata CONSEGNATA - un avviso di mancata consegna arriva anche 30 ore dopo - e (b) la cartella spam. Con Rejsjachtem la mail era morta e WhatsApp funzionava." },
